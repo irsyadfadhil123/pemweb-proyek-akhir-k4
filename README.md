@@ -1,6 +1,6 @@
 # Repository untuk project akhir Pemrograman Web Kelompok 4
 
-## To do List Fitur:
+## To do List Fitur
 
 - [ ] **1. Login**
   - Pengumpul Tugas & Pemberi Tugas
@@ -33,3 +33,8 @@
 - [ ] **8. Catatan Kehadiran** 
   - Pemberi Tugas
   - Merekam kehadiran Pengumpul Tugas secara otomatis atau manual, membantu Pemberi Tugas untuk melacak partisipasi Pengumpul Tugas dalam kelas.
+
+## Bahan Belajar
+
+  - Tutorial [Git & Github](https://www.youtube.com/watch?v=lTMZxWMjXQU&list=PLFIM0718LjIVknj6sgsSceMqlq242-jNf&index=1)
+  - Tutorial [MVC](https://www.youtube.com/watch?v=tBKOb8Ib5nI&list=PLFIM0718LjIVEh_d-h5wAjsdv2W4SAtkx)
