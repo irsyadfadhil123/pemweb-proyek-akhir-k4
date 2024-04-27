@@ -1,5 +1,4 @@
 <?php
-
 class About extends Controller{
     public function index($nama = 'Fadhil', $pekerjaan = 'Mahasiswa') {
         $data['nama'] = $nama;
