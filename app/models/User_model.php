@@ -8,12 +8,10 @@ class User_model {
     }
 
     public function addUser($data) {
-        $query = "INSERT INTO {$this->table} (id, username, nama, password) VALUES ('', ?, ?, ?)";
-
+        $query = "INSERT INTO {$this->table} (nama, username, password) VALUES (?, ?, ?)";
         $this->db->query($query);
-        $this->db->bind(1, $data['username']);
-        $this->db->bind(2, $data['nama']);
-        $this->db->bind(3, $data['password']);
+        $this->db->bind($data['nama'], $data['username'], $data['password']);
+
         $this->db->execute();
     
         return $this->db->rowCount();

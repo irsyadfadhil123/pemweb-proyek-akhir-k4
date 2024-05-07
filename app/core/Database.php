@@ -23,30 +23,23 @@ class Database {
         $this->stmt = $this->conn->prepare($query);
     }
 
-    public function bind($param, $value, $type = null) {
-        if (is_null($type)) {
-            switch (true) {
-                case is_int($value):
-                    $type = 'i';
-                    break;
-                case is_double($value):
-                    $type = 'd';
-                    break;
-                case is_string($value):
-                    $type = 's';
-                    break;
-                case is_bool($value):
-                    $type = 'i';
-                    $value = $value ? 1:0;
-                    break;
-                case is_null($value):
-                    $type = 's';
-                    break;
-                default:
-                    $type = 's';
+    public function bind(...$values) {
+        $types = "";
+        foreach ($values as $value) {
+            if (is_int($value)) {
+            $types .= 'i';
+            } else if (is_double($value)) {
+            $types .= 'd';
+            } else if (is_string($value)) {
+            $types .= 's';
+            } else if (is_bool($value)) {
+            $types .= 'i';
+            $value = $value ? 1 : 0;
+            } else {
+            $types .= 's';
             }
         }
-        $this->stmt->bind_param($type, $value);
+        $this->stmt->bind_param($types, ...$values);
     }
 
     public function execute() {
