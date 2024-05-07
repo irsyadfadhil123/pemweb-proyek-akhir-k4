@@ -1,12 +1,12 @@
 # Repository untuk project akhir Pemrograman Web Kelompok 4
 
-## To do List Fitur
+## To-do List Fitur
 
 - [ ] **1. Login**
   - Pengumpul Tugas & Pemberi Tugas
   - Mengisi identitas akun yang telah terdaftar untuk mengakses website.
 
-- [ ] **2. Register**
+- [x] **2. Register**
   - Pengumpul Tugas & Pemberi Tugas
   - Membuat identitas akun yang akan digunakan untuk mengisi identitas saat melakukan Login.
 
