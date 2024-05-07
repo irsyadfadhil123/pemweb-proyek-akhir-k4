@@ -1,8 +1,13 @@
-<form action="">
-    <label for="">Username:</label><br>
-    <input type="text" name="username"><br>
-    <label for="">Password:</label><br>
-    <input type="password" name="password"><br>
-    <input type="submit" name="submit" value="login">
-</form>
-<a href="<?= BASEURL; ?>/register">Klik disini untuk Register</a>
+        <div class="box1">
+            <div class="box2">
+                <form action="">
+                    <div class="login-box">
+                        <p>Login</p>
+                        <input type="text" name="username" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+                        <a href="<?= BASEURL; ?>/register">I don't have an account</a>
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
