@@ -11,7 +11,6 @@ class User_model {
         $query = "INSERT INTO {$this->table} (nama, username, password) VALUES (?, ?, ?)";
         $this->db->query($query);
         $this->db->bind($data['nama'], $data['username'], $data['password']);
-
         $this->db->execute();
     
         return $this->db->rowCount();

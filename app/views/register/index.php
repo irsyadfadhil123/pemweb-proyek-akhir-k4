@@ -7,3 +7,4 @@
     <input type="password" name="password" id="password" required><br>
     <input type="submit" name="submit" value="register">
 </form>
+<a href="<?= BASEURL; ?>/login">Klik disini untuk Login</a>
