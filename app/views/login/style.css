@@ -38,10 +38,6 @@
     font-size: 24px;
 }
 
-.login-box input::-ms-value {
-    font-size: 24px;
-}
-
 .login-box a {
     align-self: flex-end;
     font-size: 18px;
