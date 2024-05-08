@@ -1,3 +1,106 @@
 * {
-    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: Arial, sans-serif;
+  }
+
+.box1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box2 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-box {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.signup-box p {
+    font-size: 64px;
+    margin-bottom: 27px;
+}
+
+.signup-box input {
+    border: 1px solid lightgray;
+    font-size: 24px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.signup-box input::placeholder {
+    font-size: 24px;
+}
+
+.signup-box input::-ms-value {
+    font-size: 24px;
+}
+
+.signup-box a {
+    align-self: flex-end;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.signup-box button {
+    color: white;
+    background-color: green;
+    width: 100px;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.login-box {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.login-box p {
+    font-size: 64px;
+    margin-bottom: 27px;
+}
+
+.login-box input {
+    border: 1px solid lightgray;
+    font-size: 24px;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.login-box input::placeholder {
+    font-size: 24px;
+}
+
+.login-box a {
+    align-self: flex-end;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.login-box button {
+    color: white;
+    background-color: green;
+    width: 100px;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 10px;
 }
