@@ -2,7 +2,7 @@
 
 ## To-do List Fitur
 
-- [ ] **1. Login**
+- [x] **1. Login**
   - Pengumpul Tugas & Pemberi Tugas
   - Mengisi identitas akun yang telah terdaftar untuk mengakses website.
 

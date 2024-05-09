@@ -2,12 +2,12 @@
             <div class="box2">
                 <form action="<?= BASEURL; ?>/register/tambah" method="post">
                     <div class="signup-box">
-                        <p>Signup</p>
+                        <p>Register</p>
                         <input type="text" name="username" placeholder="Username">
                         <input type="text" name="nama" placeholder="Nama">
                         <input type="password" name="password" placeholder="Password">
                         <a href="<?= BASEURL; ?>/login">I already have an account</a>
-                        <button type="submit">Signup</button>
+                        <button type="submit">Register</button>
                     </div>
                 </form>
             </div>
