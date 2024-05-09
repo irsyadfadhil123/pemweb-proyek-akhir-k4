@@ -69,4 +69,8 @@ class Database {
     public function close() {
         $this->conn->close();
     }
+
+    public function get() {
+        return $this->stmt->get_result();
+    }
 }

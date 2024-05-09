@@ -1,6 +1,6 @@
         <div class="box1">
             <div class="box2">
-                <form action="<?= BASEURL; ?>/register/tambah" method="post">
+                <form action="<?= BASEURL; ?>/login/verifikasi" method="post">
                     <div class="login-box">
                         <p>Login</p>
                         <input type="text" name="username" placeholder="Username">
