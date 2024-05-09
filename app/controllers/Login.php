@@ -14,12 +14,14 @@ class Login extends Controller{
     }
 
     public function verifikasi() {
-        if ($this->model('User_model')->verify($_POST)) {
+        $result = $this->model('User_model')->verify($_POST);
+
+        if ($result) {
             $_SESSION["login"] = true;
-            header("Location:" . BASEURL . "/home/index");
+            header("Location:" . BASEURL . "/home");
             exit;
         } else {
-            header("Location:" . BASEURL . "/login/index");
+            header("Location:" . BASEURL . "/login");
         }
     }
 }
