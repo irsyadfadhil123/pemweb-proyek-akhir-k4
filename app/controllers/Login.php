@@ -5,7 +5,6 @@ class Login extends Controller{
         parent::__construct();
     }
     public function index() {
-        // $data['type'] = "login";
         $data['judul'] = "Login Page";
         $this->view('templates/sessionLogin');
         $this->view('templates/header', $data);

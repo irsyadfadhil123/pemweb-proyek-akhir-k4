@@ -27,8 +27,8 @@ class User_model {
         if (!is_null($result)) {
             // verify password
             if (password_verify($data['password'], $result['password'])) {
+                setcookie('id', $result['user_id'] , time() + 60000, '/');
                 if (isset($data['remember'])) {
-                    setcookie('id', $result['id'] , time() + 600, '/');
                     setcookie('username', $result['username'], time() + 600, '/');
                     setcookie('key', hash('sha256', $result['username']), time() + 600, '/');
                 }
@@ -39,16 +39,16 @@ class User_model {
     }
 
     public function cookieCheck($data) {
-        $query = "SELECT username FROM {$this->table} WHERE id = ?";
-        $this->db->query($query);
-        $this->db->bind($_COOKIE['id']);
-        $result = $this->db->single();
+        // $query = "SELECT username FROM {$this->table} WHERE id = ?";
+        // $this->db->query($query);
+        // $this->db->bind($_COOKIE['id']);
+        // $result = $this->db->single();
 
-        if (!is_null($result)) {
-            if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
-                setcookie('username', $result['username'], time() + 600, '/');
-            }
-        }
-        return $result;
+        // if (!is_null($result)) {
+        //     if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
+        //         setcookie('username', $result['username'], time() + 600, '/');
+        //     }
+        // }
+        // return $result;
     }
 }
