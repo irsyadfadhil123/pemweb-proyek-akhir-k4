@@ -26,11 +26,22 @@ class Tugas_model {
         $this->db->query($query);
         $this->db->bind($data);
         $result = $this->db->single();
+
         if ($result) {
-            if ($result['kode_tugas'] == $data) {
-                return false;
-            }
+            return $result;
         }
-        return $result;
+    }
+
+    public function findById($data) {
+        $all = [];
+        foreach ($data as $daftar) {
+            $query = "SELECT * FROM {$this->table} WHERE tugas_id = ?";
+            $this->db->query($query);
+            $this->db->bind($daftar['tugas_id']);
+            $result = $this->db->single();
+
+            $all[] = $result;
+        }
+        return $all;
     }
 }

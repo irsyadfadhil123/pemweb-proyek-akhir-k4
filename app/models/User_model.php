@@ -27,10 +27,10 @@ class User_model {
         if (!is_null($result)) {
             // verify password
             if (password_verify($data['password'], $result['password'])) {
-                setcookie('id', $result['user_id'] , time() + 60000, '/');
+                setcookie('id', $result['user_id'] , time() + 6000000, '/');
                 if (isset($data['remember'])) {
-                    setcookie('username', $result['username'], time() + 600, '/');
-                    setcookie('key', hash('sha256', $result['username']), time() + 600, '/');
+                    setcookie('username', $result['username'], time() + 6000000, '/');
+                    setcookie('key', hash('sha256', $result['username']), time() + 6000000, '/');
                 }
                 return $result;
             }

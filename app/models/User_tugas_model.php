@@ -16,4 +16,14 @@ class User_tugas_model {
 
         return $this->db->rowCount();
     }
+
+    public function findById() {
+        $id = $_COOKIE['id'];
+        $query = "SELECT * FROM {$this->table} WHERE user_id = ?";
+        $this->db->query($query);
+        $this->db->bind($id);
+        $result = $this->db->multi();
+
+        return $result;
+    }
 }

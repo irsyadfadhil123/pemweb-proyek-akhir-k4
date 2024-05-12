@@ -46,7 +46,7 @@ class Database {
         $this->stmt->execute();
     }
 
-    public function resultSet() {
+    public function multi() {
         $this->execute();
         $result = $this->stmt->get_result();
         $data = [];

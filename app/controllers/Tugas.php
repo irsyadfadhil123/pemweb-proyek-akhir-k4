@@ -5,10 +5,13 @@ class Tugas extends Controller{
         parent::__construct();
     }
     public function index() {
+        $daftar = $this->model('User_tugas_model')->findById();
+        $tugas = $this->model('Tugas_model')->findById($daftar);
+        $data['tugas'] = $tugas;
         $data['judul'] = "Tugas";
         $this->view('templates/sessionPages');
         $this->view('templates/header', $data);
-        $this->view('tugas/index');
+        $this->view('tugas/index', $data);
         $this->view('templates/footer');
     }
 
@@ -42,11 +45,10 @@ class Tugas extends Controller{
 
     public function tambah() {
         $data = $this->model('Tugas_model')->findByKode($_POST['kode_tugas']);
-        if ($data) {
+        if (!($data['kode_tugas'] == $_POST['kode_tugas'])) {
             $this->model('User_tugas_model')->add($data);
             header("Location: " . BASEURL . '/tugas/index');
             exit;
         }
-        header("Location: " . BASEURL . '/tugas/tambahTugas');
     }
 }
