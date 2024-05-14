@@ -3,104 +3,100 @@
     padding: 0;
     border: none;
     font-family: Arial, sans-serif;
-  }
-
-.box1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.box2 {
+/* CSS LOGIN */
+
+.login-flex-main {
+    display: flex;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-.signup-box {
-    border: 1px solid grey;
-    border-radius: 10px;
-    padding: 50px;
+.login-flex-box {
     display: flex;
     flex-direction: column;
-    width: 500px;
-}
-
-.signup-box p {
-    font-size: 64px;
-    margin-bottom: 27px;
-}
-
-.signup-box input {
-    border: 1px solid lightgray;
-    font-size: 24px;
-    border-radius: 10px;
+    border: 1px black solid;
+    border-radius: 3px;
     padding: 20px;
-    margin-bottom: 25px;
 }
 
-.signup-box input::placeholder {
-    font-size: 24px;
+.login-login-text {
+    font-size: 42px;
+    margin-bottom: 5px;
 }
 
-.signup-box input::-ms-value {
-    font-size: 24px;
-}
-
-.signup-box a {
-    align-self: flex-end;
+.login-text-input {
+    border: 1px black solid;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
     font-size: 18px;
-    margin-bottom: 25px;
 }
 
-.signup-box button {
+.login-remember {
+    margin-bottom: 10px;
+}
+
+.login-account-link {
+    margin-bottom: 10px;
+    align-self: flex-end;
+}
+
+.login-submit-button {
+    align-self: flex-start;
+    padding: 10px;
+    background-color: cadetblue;
     color: white;
-    background-color: green;
-    width: 100px;
-    height: 50px;
-    font-size: 24px;
-    border-radius: 10px;
+    border-radius: 3px;
+    font-size: 18px;
 }
 
-.login-box {
-    border: 1px solid grey;
-    border-radius: 10px;
-    padding: 50px;
+/* CSS REGISTER */
+
+.register-flex-main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-flex-box {
     display: flex;
     flex-direction: column;
-    width: 500px;
-}
-
-.login-box p {
-    font-size: 64px;
-    margin-bottom: 27px;
-}
-
-.login-box input {
-    border: 1px solid lightgray;
-    font-size: 24px;
-    border-radius: 10px;
+    border: 1px black solid;
+    border-radius: 3px;
     padding: 20px;
-    margin-bottom: 25px;
 }
 
-.login-box input::placeholder {
-    font-size: 24px;
+.register-register-text {
+    font-size: 42px;
+    margin-bottom: 5px;
 }
 
-.login-box a {
-    align-self: flex-end;
+.register-text-input {
+    border: 1px black solid;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
     font-size: 18px;
-    margin-bottom: 25px;
 }
 
-.login-box button {
+.register-remember {
+    margin-bottom: 10px;
+}
+
+.register-account-link {
+    margin-bottom: 10px;
+    align-self: flex-end;
+}
+
+.register-submit-button {
+    align-self: flex-start;
+    padding: 10px;
+    background-color: cadetblue;
     color: white;
-    background-color: green;
-    width: 100px;
-    height: 50px;
-    font-size: 24px;
-    border-radius: 10px;
+    border-radius: 3px;
+    font-size: 18px;
 }

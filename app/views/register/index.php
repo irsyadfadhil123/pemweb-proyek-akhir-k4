@@ -1,15 +1,14 @@
-        <div class="box1">
-            <div class="box2">
-                <form action="<?= BASEURL; ?>/register/tambah" method="post">
-                    <div class="signup-box">
-                        <p>Register</p>
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="text" name="nama" placeholder="Nama">
-                        <input type="password" name="password" placeholder="Password">
-                        <a href="<?= BASEURL; ?>/login">I already have an account</a>
-                        <button type="submit">Register</button>
-                    </div>
-                </form>
-            </div>
+        <div class="register-flex-main">
+            <form action="" method="post" class="register-flex-box">
+                <p class="register-register-text">Register</p>
+                <input type="text" name="username" placeholder="Username" class="register-text-input">
+                <input type="text" name="nama" placeholder="Nama" class="register-text-input">
+                <input type="password" name="password" placeholder="Password" class="register-text-input">
+                <div class="register-remember">
+                    <input type="checkbox" name="remember">
+                    <label for="remember">Ingat saya</label>
+                </div>
+                <a href="" class="register-account-link">I already have an account</a>
+                <button type="submit" class="register-submit-button">Register</button>
+            </form>
         </div>
-
