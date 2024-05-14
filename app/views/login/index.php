@@ -1,8 +1,8 @@
         <div class="login-flex-main">
             <form action="<?= BASEURL; ?>/login/verifikasi" method="post" class="login-flex-box">
                 <p class="login-login-text">Login</p>
-                <input type="text" name="username" placeholder="Username" class="login-text-input">
-                <input type="password" name="password" placeholder="Password" class="login-text-input">
+                <input type="text" name="username" placeholder="Username" class="login-text-input" required>
+                <input type="password" name="password" placeholder="Password" class="login-text-input" required>
                 <div class="login-remember">
                     <input type="checkbox" name="remember">
                     <label for="remember">Ingat saya</label>
