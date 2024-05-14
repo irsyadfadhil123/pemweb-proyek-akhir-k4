@@ -10,7 +10,7 @@
   - Pengumpul Tugas & Pemberi Tugas
   - Membuat identitas akun yang akan digunakan untuk mengisi identitas saat melakukan Login.
 
-- [ ] **3. Edit Profil**
+- [x] **3. Edit Profil**
   - Pengumpul Tugas & Pemberi Tugas 
   - Mengubah identitas akun yang telah terdaftar saat melakukan register.
 

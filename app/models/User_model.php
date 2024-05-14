@@ -17,6 +17,24 @@ class User_model {
         return $this->db->rowCount();
     }
 
+    public function update($data) {
+        $query = "UPDATE {$this->table} SET username = ?, nama = ?, password = ? WHERE user_id = ?";
+        $this->db->query($query);
+        $this->db->bind($data['username'], $data['nama'], $data['newPassword'], $_COOKIE['id']);
+        $this->db->execute();
+
+    }
+
+    public function findById() {
+        $id = $_COOKIE['id'];
+        $query = "SELECT * FROM {$this->table} WHERE user_id = ?";
+        $this->db->query($query);
+        $this->db->bind($id);
+        $result = $this->db->single();
+
+        return $result;
+    }
+
     public function verify($data) {
         $query = "SELECT * FROM {$this->table} WHERE username = ?";
         $this->db->query($query);

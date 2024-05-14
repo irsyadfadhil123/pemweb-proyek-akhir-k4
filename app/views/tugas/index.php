@@ -1,3 +1,4 @@
+<a href="<?= BASEURL;?>/home/index">Kembali</a><br>
 <a href="<?= BASEURL;?>/tugas/tambahTugas">Tambah Tugas</a>
 <a href="<?= BASEURL;?>/tugas/buatTugas">Buat Tugas</a>
 
@@ -11,7 +12,7 @@ if (!empty($data['tugas'])) {
 <p><?= $tugas_tergabung['judul']; ?></p>
 <p><?= $tugas_tergabung['deskripsi']; ?></p>
 <p><?= $tugas_tergabung['deadline']; ?></p>
-<a href="">upload</a>
+<a href="<?= BASEURL;?>/tugas/upload/<?= $tugas_tergabung['tugas_id'];?>">upload</a>
 <?php 
         }
     }
@@ -29,7 +30,7 @@ if (!empty($data['tugas'])) {
 <p><?= $tugas_dibuat['judul']; ?></p>
 <p><?= $tugas_dibuat['deskripsi']; ?></p>
 <p><?= $tugas_dibuat['deadline']; ?></p>
-<a href="">lihat</a>
+<a href="<?= BASEURL;?>/tugas/lihat/<?= $tugas_dibuat['tugas_id'];?>">lihat</a>
 <?php 
         }
     }

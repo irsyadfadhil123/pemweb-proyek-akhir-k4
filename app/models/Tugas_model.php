@@ -32,6 +32,15 @@ class Tugas_model {
         }
     }
 
+    public function singleFindById($data) {
+        $query = "SELECT * FROM {$this->table} WHERE tugas_id = ?";
+        $this->db->query($query);
+        $this->db->bind($data);
+        $result = $this->db->single();
+
+        return $result;
+    }
+
     public function findById($data) {
         $all = [];
         foreach ($data as $daftar) {

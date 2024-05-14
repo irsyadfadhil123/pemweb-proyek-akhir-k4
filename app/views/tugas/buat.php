@@ -1,3 +1,5 @@
+<a href="<?= BASEURL?>/tugas/index">Kembali</a><br>
+
 <form action="<?= BASEURL; ?>/tugas/buat" method="post">
     <input type="hidden" name="id" value="$_SESSION['id']">
     <input type="text" name="judul" placeholder="Judul">
