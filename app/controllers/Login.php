@@ -17,6 +17,7 @@ class Login extends Controller{
 
         if ($result) {
             $_SESSION["login"] = true;
+            $_SESSION['id'] = $result['user_id'];
             header("Location:" . BASEURL . "/home");
             exit;
         } else {

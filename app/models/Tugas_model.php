@@ -8,7 +8,7 @@ class Tugas_model {
     }
 
     public function add($data) {
-        $id = $_COOKIE['id'];
+        $id = $_SESSION['id'];
         $query = "INSERT INTO {$this->table} (admin, judul, deskripsi, deadline, kode_tugas) VALUES (?, ?, ?, ?, ?)";
         $this->db->query($query);
         $this->db->bind($id, $data['judul'], $data['deskripsi'], $data['deadline'], $data['kode_tugas']);

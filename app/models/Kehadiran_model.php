@@ -11,7 +11,7 @@ class Kehadiran_model {
         $date = date("Y-m-d");
         $query = "INSERT INTO {$this->table} (user_id, tugas_id, tanggal_kehadiran) VALUES (?,?,?)";
         $this->db->query($query);
-        $this->db->bind($_COOKIE['id'], $data, $date);
+        $this->db->bind($_SESSION['id'], $data, $date);
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -20,7 +20,7 @@ class Kehadiran_model {
     public function verify($data) {
         $query = "SELECT * FROM {$this->table} WHERE user_id = ? AND tugas_id = ?";
         $this->db->query($query);
-        $this->db->bind($_COOKIE['id'], $data);
+        $this->db->bind($_SESSION['id'], $data);
         $result = $this->db->single();
 
         if (empty($result)) {

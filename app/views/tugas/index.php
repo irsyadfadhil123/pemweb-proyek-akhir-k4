@@ -7,7 +7,7 @@
 <?php 
 if (!empty($data['tugas'])) {
     foreach ($data['tugas'] as $tugas_tergabung) {
-        if ($tugas_tergabung['admin'] !== $_COOKIE['id']) {
+        if ($tugas_tergabung['admin'] !== $_SESSION['id']) {
 ?>
 <p><?= $tugas_tergabung['judul']; ?></p>
 <p><?= $tugas_tergabung['deskripsi']; ?></p>
@@ -25,7 +25,7 @@ if (!empty($data['tugas'])) {
 <?php 
 if (!empty($data['tugas'])) {
     foreach ($data['tugas'] as $tugas_dibuat) {
-        if ($tugas_dibuat['admin'] == $_COOKIE['id']) {
+        if ($tugas_dibuat['admin'] == $_SESSION['id']) {
 ?>
 <p><?= $tugas_dibuat['judul']; ?></p>
 <p><?= $tugas_dibuat['deskripsi']; ?></p>

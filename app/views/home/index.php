@@ -2,3 +2,4 @@
 <a href="<?= BASEURL; ?>/home/profil">Lihat Profil</a><br>
 <a href="<?= BASEURL; ?>/tugas/index">Lihat daftar kelas</a>
 <h1>home index</h1>
+<?php echo $_SESSION['id']; ?>

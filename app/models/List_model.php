@@ -8,7 +8,7 @@ class List_model {
     }
 
     public function add($data) {
-        $id = $_COOKIE['id'];
+        $id = $_SESSION['id'];
         $query = "INSERT INTO {$this->table} (user_id, tugas_id, admin) VALUES (?, ?, ?)";
         $this->db->query($query);
         $this->db->bind($id, $data['tugas_id'], $data['admin']);
@@ -18,7 +18,7 @@ class List_model {
     }
 
     public function findById() {
-        $id = $_COOKIE['id'];
+        $id = $_SESSION['id'];
         $query = "SELECT * FROM {$this->table} WHERE user_id = ?";
         $this->db->query($query);
         $this->db->bind($id);
@@ -28,7 +28,7 @@ class List_model {
     }
 
     public function check($data) {
-        $id = $_COOKIE['id'];
+        $id = $_SESSION['id'];
         $query = "SELECT COUNT(*) as total FROM {$this->table} WHERE user_id = ? AND tugas_id = ?";
         $this->db->query($query);
         $this->db->bind($id, $data);
