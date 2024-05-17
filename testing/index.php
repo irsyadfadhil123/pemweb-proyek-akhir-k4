@@ -9,31 +9,24 @@
 
     </head>
     <body>
+        <!--  -->
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <form action="" method="post" class="d-flex flex-column border border-secondary-subtle p-4">
-                <p class="fs-1">Login</p>
-                <input type="text" name="username" placeholder="Username" class="form-control mb-2" required>
-                <input type="password" name="password" placeholder="Password" class="form-control mb-2" required>
-                <div class="form-check mb-2">
-                    <input type="checkbox" name="remember" class="form-check-input">
-                    <label for="remember" class="form-check-label">Ingat saya</label>
+            <div class="d-flex flex-column align-items-center border border-secondary rounded p-5 shadow" style="width: 50vw;">
+                <a href="" class="btn btn-outline-warning align-self-start">Kembali</a>
+                <br class="m-3">
+                <img src="..." class="rounded-circle" style="width: 200px; height: 200px;">
+                <br class="m-3">
+                <h2 class="display-6">[INSERT NAME HERE]</h2>
+                <br class="m-3">
+                <div style="width: 400px;">
+                    <label class="lead">Username: </label>
+                    <input type="text" class="form-control" placeholder="[INSERT USERNAME HERE]" disabled>
                 </div>
-                <a href="" class="align-self-end link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-4">I don't have an account</a>
-                <button type="submit" class="btn btn-primary align-self-start">Login</button>
-            </form>
+                <br class="m-4">
+                <a href="" class="btn btn-success">Edit Profile</a>
+            </div>
         </div>
-
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <form action="" method="post" class="d-flex flex-column border border-secondary-subtle p-4">
-                <p class="fs-1">Register</p>
-                <input type="text" name="username" placeholder="Username" class="form-control mb-2" required>
-                <input type="text" name="nama" placeholder="Nama" class="form-control mb-2" required>
-                <input type="password" name="password" placeholder="Password" class="form-control mb-2" required>
-                <a href="" class="align-self-end link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-4">I already have an account</a>
-                <button type="submit" class="btn btn-success align-self-start">Register</button>
-            </form>
-        </div>
-
+        <!--  -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
