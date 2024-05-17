@@ -1,7 +1,7 @@
 <?php
 
-class User_tugas_model {
-    private $table = 'user_tugas';
+class List_model {
+    private $table = 'list';
     private $db;
     public function __construct() {
         $this->db = new Database;

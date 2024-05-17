@@ -5,7 +5,7 @@ class Tugas extends Controller{
         parent::__construct();
     }
     public function index() {
-        $daftar = $this->model('User_tugas_model')->findById();
+        $daftar = $this->model('List_model')->findById();
         $tugas = $this->model('Tugas_model')->findById($daftar);
         $data['tugas'] = $tugas;
         $data['judul'] = "Tugas";
@@ -76,7 +76,7 @@ class Tugas extends Controller{
         $data = $this->model('Tugas_model')->add($_POST);
         if ($data) {
             $task = $this->model('Tugas_model')->findByKode($data);
-            $this->model('User_tugas_model')->add($task);
+            $this->model('List_model')->add($task);
 
             header("Location: " . BASEURL . '/tugas/index');
             exit;
@@ -87,9 +87,9 @@ class Tugas extends Controller{
     public function tambah() {
         $data = $this->model('Tugas_model')->findByKode($_POST['kode_tugas']);
         if (!is_null($data)) {
-            $check = $this->model('User_tugas_model')->check($data['tugas_id']);
+            $check = $this->model('List_model')->check($data['tugas_id']);
             if (!($check > 0)) {
-                    $this->model('User_tugas_model')->add($data);
+                    $this->model('List_model')->add($data);
                     header("Location: " . BASEURL . '/tugas/index');
                     exit;
                 }
