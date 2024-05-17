@@ -86,10 +86,17 @@ class Tugas extends Controller{
 
     public function tambah() {
         $data = $this->model('Tugas_model')->findByKode($_POST['kode_tugas']);
-        if (!($data['kode_tugas'] == $_POST['kode_tugas'])) {
-            $this->model('User_tugas_model')->add($data);
-            header("Location: " . BASEURL . '/tugas/index');
+        if (!is_null($data)) {
+            $check = $this->model('User_tugas_model')->check($data['tugas_id']);
+            if (!($check > 0)) {
+                    $this->model('User_tugas_model')->add($data);
+                    header("Location: " . BASEURL . '/tugas/index');
+                    exit;
+                }
+            echo "<script>alert('Tugas sudah ditambahkan'); window.history.go(-1);</script>";
             exit;
         }
+        echo "<script>alert('Tugas tidak ditemukan'); window.history.go(-1);</script>";
+        exit;
     }
 }

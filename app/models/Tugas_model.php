@@ -27,9 +27,7 @@ class Tugas_model {
         $this->db->bind($data);
         $result = $this->db->single();
 
-        if ($result) {
-            return $result;
-        }
+        return $result;
     }
 
     public function singleFindById($data) {

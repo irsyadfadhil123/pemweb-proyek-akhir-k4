@@ -26,4 +26,14 @@ class User_tugas_model {
 
         return $result;
     }
+
+    public function check($data) {
+        $id = $_COOKIE['id'];
+        $query = "SELECT COUNT(*) as total FROM {$this->table} WHERE user_id = ? AND tugas_id = ?";
+        $this->db->query($query);
+        $this->db->bind($id, $data);
+        $result = $this->db->single();
+
+        return $result['total'];
+    }
 }
