@@ -35,15 +35,25 @@ class User_model {
         return $result;
     }
 
+    public function multiFindById($data) {
+        $all = [];
+        foreach ($data as $list) {
+            $query = "SELECT * FROM {$this->table} WHERE user_id = ?";
+            $this->db->query($query);
+            $this->db->bind($list['user_id']);
+            $result = $this->db->single();
+            $all[] = $result;
+        }
+        return $all;
+    }
+
     public function verify($data) {
         $query = "SELECT * FROM {$this->table} WHERE username = ?";
         $this->db->query($query);
         $this->db->bind($data['username']);
         $result = $this->db->single();
 
-        //verify username
         if (!is_null($result)) {
-            // verify password
             if (password_verify($data['password'], $result['password'])) {
                 setcookie('id', $result['user_id'] , time() + 6000000, '/');
                 if (isset($data['remember'])) {

@@ -28,4 +28,13 @@ class Kehadiran_model {
         }
         return false;
     }
+
+    public function list($data) {
+        $query = "SELECT * FROM {$this->table} WHERE tugas_id = ?";
+        $this->db->query($query);
+        $this->db->bind($data);
+        $result = $this->db->multi();
+
+        return $result;
+    }
 }
