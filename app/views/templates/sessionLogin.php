@@ -3,9 +3,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (isset($_COOKIE['username'])) {
-    if ($_COOKIE['key'] === hash('sha256', $_COOKIE['username'])) {
-        $_SESSION['login'] = true;
+if (isset($_COOKIE['key'])) {
+    if ($_COOKIE['key'] == hash('sha256', $data['profil']['username'])) {
+        $_SESSION["login"] = true;
+        $_SESSION['id'] = $data['profil']['user_id'];
     }
 }
 

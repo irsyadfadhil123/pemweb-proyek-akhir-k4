@@ -1,9 +1,14 @@
 <?php
 
 class Home extends Controller {
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function index() {
+        $data['profil'] = $this->model('User_model')->findById($_SESSION['id']);
         $data['judul'] = "Home";
-        $this->view('templates/sessionPages');
+        $this->view('templates/sessionPages', $data);
         $this->view('templates/header', $data);
         $this->view('home/index');
         $this->view('templates/footer');
@@ -14,18 +19,18 @@ class Home extends Controller {
     }
 
     public function profil() {
-        $data['profil'] = $this->model('User_model')->findById();
+        $data['profil'] = $this->model('User_model')->findById($_SESSION['id']);
         $data['judul'] = "Profil";
-        $this->view('templates/sessionPages');
+        $this->view('templates/sessionPages', $data);
         $this->view('templates/header', $data);
         $this->view('home/profil', $data);
         $this->view('templates/footer');
     }
 
     public function edit() {
-        $data['profil'] = $this->model('User_model')->findById();
+        $data['profil'] = $this->model('User_model')->findById($_SESSION['id']);
         $data['judul'] = "Profil";
-        $this->view('templates/sessionPages');
+        $this->view('templates/sessionPages', $data);
         $this->view('templates/header', $data);
         $this->view('home/edit', $data);
         $this->view('templates/footer');

@@ -25,11 +25,10 @@ class User_model {
 
     }
 
-    public function findById() {
-        $id = $_COOKIE['id'];
+    public function findById($data) {
         $query = "SELECT * FROM {$this->table} WHERE user_id = ?";
         $this->db->query($query);
-        $this->db->bind($id);
+        $this->db->bind($data);
         $result = $this->db->single();
 
         return $result;
@@ -46,7 +45,6 @@ class User_model {
             // verify password
             if (password_verify($data['password'], $result['password'])) {
                 if (isset($data['remember'])) {
-                    setcookie('username', $result['username'], time() + 6000000, '/');
                     setcookie('key', hash('sha256', $result['username']), time() + 6000000, '/');
                 }
                 return $result;

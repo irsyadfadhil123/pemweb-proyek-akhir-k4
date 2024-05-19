@@ -7,7 +7,7 @@
 <?php 
 if (!empty($data['tugas'])) {
     foreach ($data['tugas'] as $tugas_tergabung) {
-        if ($tugas_tergabung['admin'] !== $_SESSION['id']) {
+        if ($tugas_tergabung['admin'] != $_SESSION['id']) {
 ?>
 <p><?= $tugas_tergabung['judul']; ?></p>
 <p><?= $tugas_tergabung['deskripsi']; ?></p>
