@@ -12,22 +12,13 @@
         <!--  -->
         
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <form action="#" method="post" class="d-flex flex-column border border-secondary rounded p-5 shadow" style="width: 50vw;">
-                <a href="#" class="btn btn-outline-warning align-self-start mb-3">Kembali</a>
-                <input type="hidden" name="password" value="">
-                <div class="input-group mb-3">
-                    <span class="input-group-text">@</span>
-                    <input type="text"name="username" value="" placeholder="Username" required class="form-control">
-                </div>
-                <input type="text" name="nama" value="" placeholder="Nama" required class="form-control mb-3">
-                <div class="input-group mb-3">
-                    <input type="password" name="newPassword" id="" placeholder="Password Baru" class="form-control">
-                    <input type="password" name="confirmPasword" placeholder="Konfirmasi Password" class="form-control">
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" name="oldPassword" id="" placeholder="Password Lama" required class="form-control">
-                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
-                </div>
+            <form action="" method="post" class="d-flex flex-column p-5 border border-secondary-subtle rounded align-items-center shadow" style="width: 50vw;">
+                <a href="" class="btn btn-outline-warning align-self-start">Kembali</a>
+                <h3 class="display-5">Tambah Tugas</h3>
+                <br class="mb-4">
+                <input type="text" name="kode_tugas" placeholder="Kode Tugas" required class="form-control align-self-center">
+                <br class="mb-5">
+                <button type="submit" class="btn btn-success align-self-end">Tambah Tugas</button>
             </form>
         </div>
 
