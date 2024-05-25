@@ -9,7 +9,8 @@
 
     </head>
     <body>
-        <!--  -->
+        <!-- Login, Register, Profile, Edit Profile, Tambah Tugas -->
+        
         
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
             <form action="" method="post" class="d-flex flex-column p-5 border border-secondary-subtle rounded align-items-center shadow" style="width: 50vw;">
