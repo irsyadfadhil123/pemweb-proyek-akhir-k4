@@ -9,58 +9,78 @@
 
     </head>
     <body>
-        <!-- Login, Register, Profile, Edit Profile, Tambah, Buat, Upload -->
+        <!-- Login, Register, Profile, Edit Profile, Tambah, Buat, Upload, Index -->
+
         
-        <div class="p-4" style="height: 100vh;">
-            <div class="d-flex flex-column p-4 border" style="height: 100%;">
-
-                <div class="d-flex mb-3 justify-content-between">
-                    <a href="" class="btn btn-outline-warning">Kembali</a>
-                    <div class="align-self-center">
-                        <label class="lead fw-semibold">Nama User</label>
-                    </div>
-                    
-                </div>
-                
-
-                <div class="d-flex mb-3">
-                    <div class="d-flex flex-column flex-grow-1 bg-dark-subtle rounded-start p-3">
-                        <label class="lead">ID Tugas</label>
-                        <label class="display-6 fw-medium">Judul Tugas</label>
-                        <p class="lead">Deskripsi Tugas</p>
-                    </div>
-                    <div class="d-flex flex-column border border-dark-subtle rounded-end p-3">
-                        <label class="lead">Kode Kelas</label>
-                        <hr>
-                        <label class="display-6 text-secondary">D081</label>
-                    </div>
-                </div>
-
-                <div class="d-flex align-self-end mb-3">
-                    <a href="" class="btn btn-info me-3">Catat Kehadiran</a>
-                    <a href="" class="btn btn-info">Upload File</a>
-                </div>
-
-
-                <div class="d-flex flex-column bg-dark-subtle rounded align-self-start p-2 mb-3">
-                    <label class="lead fw-medium">Deadline</label>
-                    <div class="border-bottom border-secondary lead"></div>
-                </div>
-
-                <div class="d-flex">
-                    <h1 class="display-6">Forum Diskusi</h1>
-                </div>
-
-                <div class="d-flex flex-column bg-dark-subtle rounded p-3 mb-3" style="height: 100%;">
-                    <label class="lead fw-semibold">Nama User</label>
-                    <p class="lead">Isi Diskusi</p>
-                </div>
-
-                <a href="" class="btn btn-info align-self-end">Buat Diskusi</a>
-
+        <div class="d-flex justify-content-between bg-light align-self-stretch p-3 shadow mb-3">
+            <a href="" class="btn btn-outline-warning">Kembali</a>
+            <h3 class="display-6 fs-4 fw-semibold align-self-center">Aplikasi Pengumpul Tugas</h3>
+            <div class="align-self-center">
+                <label class="lead fw-medium">Nama User</label>
             </div>
         </div>
 
+        <div class="d-flex flex-column align-items-start p-4">
+            
+            <div class="d-flex mb-3">
+                <a href="" class="btn btn-outline-success me-3">Tambah Tugas</a>
+                <a href="" class="btn btn-outline-info">Buat Tugas</a>
+            </div>
+
+            <h3 class="display-6 fw-semibold mb-3">Tugas yang ditambahkan</h3>
+
+            <div class="d-flex mb-3">
+            <?php 
+            if (!empty($data['tugas'])) {
+                foreach ($data['tugas'] as $tugas_tergabung) {
+                    if ($tugas_tergabung['admin'] !== $_COOKIE['id']) {
+            ?>
+                <div class="d-flex flex-column me-4" style="width: 250px; height: 250px;">
+                    <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light">
+                        <label class="lead fw-semibold">JUDUL TUGAS</label>
+                        <label class="lead fs-6">DESKRIPSI</label>
+                    </div>
+                    <div class="d-flex bg-warning p-3 pt-2 pb-2 justify-content-between">
+                        <label class="align-self-center">DEADLINE</label>
+                        <a href="" class="btn btn-secondary">Upload</a>
+                    </div>
+                </div>
+            <?php 
+                    }
+                }
+            } else {
+                echo "Data tugas tidak tersedia.";
+            }
+            ?>
+            </div>
+
+            <h3 class="display-6 fw-semibold mb-3">Tugas yang dibuat</h3>
+
+            <div class="d-flex mb-3">
+            <?php 
+            if (!empty($data['tugas'])) {
+                foreach ($data['tugas'] as $tugas_dibuat) {
+                    if ($tugas_dibuat['admin'] == $_COOKIE['id']) {
+            ?>
+                <div class="d-flex flex-column me-4" style="width: 250px; height: 250px;">
+                    <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light">
+                        <label class="lead fw-semibold">JUDUL TUGAS</label>
+                        <label class="lead fs-6">DESKRIPSI</label>
+                    </div>
+                    <div class="d-flex bg-warning p-3 pt-2 pb-2 justify-content-between">
+                        <label class="align-self-center">DEADLINE</label>
+                        <a href="" class="btn btn-secondary">Lihat</a>
+                    </div>
+                </div>
+            <?php 
+                    }
+                }
+            } else {
+                echo "Data tugas tidak tersedia.";
+            }
+            ?>
+            </div>
+        </div>
 
 
         <!--  -->
