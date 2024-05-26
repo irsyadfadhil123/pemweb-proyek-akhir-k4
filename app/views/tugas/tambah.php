@@ -1,10 +1,17 @@
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <form action="<?= BASEURL; ?>/tugas/tambah" method="post" class="d-flex flex-column p-5 border border-secondary-subtle rounded align-items-center shadow" style="width: 50vw;">
-                <a href="<?= BASEURL?>/tugas/index" class="btn btn-outline-warning align-self-start">Kembali</a>
+        <div class="d-flex justify-content-between bg-light align-self-stretch p-3 shadow mb-3">
+            <a href="<?= BASEURL?>/tugas/index" class="btn btn-outline-warning">Kembali</a>
+            <h3 class="display-6 fs-4 fw-semibold align-self-center">Tambah Tugas</h3>
+            <div class="align-self-center">
+                <label class="lead fw-medium">Nama User</label>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center" style="height: 85vh;">
+            <form action="<?= BASEURL; ?>/tugas/tambah" method="post" class="d-flex flex-column" style="width: 75vw;">
                 <h3 class="display-5">Tambah Tugas</h3>
-                <br class="mb-4">
+                <br class="mb-3">
                 <input type="text" name="kode_tugas" placeholder="Kode Tugas" required class="form-control align-self-center">
-                <br class="mb-5">
+                <br class="mb-3">
                 <button type="submit" class="btn btn-success align-self-end">Tambah Tugas</button>
             </form>
         </div>
