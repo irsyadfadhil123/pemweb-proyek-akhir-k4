@@ -9,7 +9,6 @@
                     
                 </div>
                 
-
                 <div class="d-flex mb-3">
                     <div class="d-flex flex-column flex-grow-1 bg-dark-subtle rounded-start p-3">
                         <label class="lead"><?= $data['tugas']['tugas_id'] ?></label>
