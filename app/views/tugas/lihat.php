@@ -7,6 +7,6 @@
 <h2><?= $data['tugas']['deskripsi'] ?></h2>
 <h2><?= $data['tugas']['deadline'] ?></h2>
 
-<a href="<?= BASEURL?>/tugas/listKehadiran/<?= $data['tugas']['tugas_id'] ?>">Daftar Kehadiran</a>
+<a href="<?= BASEURL?>/kehadiran/listKehadiran/<?= $data['tugas']['tugas_id'] ?>">Daftar Kehadiran</a>
 
 <h1>Forum Diskusi:</h1>

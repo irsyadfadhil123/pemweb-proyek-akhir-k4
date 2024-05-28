@@ -1,11 +1,19 @@
 <?php
 
 class Home extends Controller {
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function index() {
+        $list = $this->model('List_model')->findById();
+        $tugas = $this->model('Tugas_model')->findById($list);
+        $pengingat = $this->model('Tugas_model')->findByTime($tugas);
+        $data['pengingat'] = $pengingat;
         $data['judul'] = "Home";
         $this->view('templates/sessionPages');
         $this->view('templates/header', $data);
-        $this->view('home/index');
+        $this->view('home/index', $data);
         $this->view('templates/footer');
     }
 

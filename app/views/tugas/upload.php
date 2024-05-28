@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="d-flex align-self-end mb-3">
-                    <a href="<?= BASEURL?>/tugas/kehadiran/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info me-3">Catat Kehadiran</a>
+                    <a href="<?= BASEURL?>/kehadiran/kehadiran/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info me-3">Catat Kehadiran</a>
                     <a href="" class="btn btn-info">Upload File</a>
                 </div>
 

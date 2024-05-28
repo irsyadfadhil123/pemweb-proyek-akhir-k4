@@ -7,7 +7,7 @@
                 <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control align-self-center mb-3">
                 <input type="text" name="kode_tugas" placeholder="Kode Tugas" class="form-control align-self-center mb-3">
                 <h3 class="lead align-self-start mb-3">Deadline</h3>
-                <input type="date" name="deadline" placeholder="Deadline" class="form-control align-self-center mb-3 align-self-start">
+                <input type="datetime-local" name="deadline" placeholder="Deadline" class="form-control align-self-center mb-3 align-self-start">
                 
                 <button type="submit" class="btn btn-success align-self-end">Buat Tugas</button>
             </form>

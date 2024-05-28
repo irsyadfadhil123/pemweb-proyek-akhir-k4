@@ -51,4 +51,20 @@ class Tugas_model {
         }
         return $all;
     }
+
+    public function findByTime($data) {
+        $id = $_COOKIE['id'];
+        $all = [];
+        foreach ($data as $pengingat) {
+            $query = "SELECT *, TIMESTAMPDIFF(DAY, NOW(), ?) AS selisih FROM {$this->table} WHERE tugas_id = ? AND TIMESTAMPDIFF(DAY, NOW(), ?) < 7";
+            $this->db->query($query);
+            $this->db->bind($pengingat['deadline'], $pengingat['tugas_id'], $pengingat['deadline']);
+            $result = $this->db->single();
+
+            if (!is_null($result) && $id != $pengingat['admin']) {
+                $all[] = $result;
+            }
+        }
+        return $all;
+    }
 }
