@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2024 at 01:30 PM
+-- Generation Time: May 29, 2024 at 01:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,20 +67,34 @@ CREATE TABLE `kehadiran` (
 --
 
 INSERT INTO `kehadiran` (`kehadiran_id`, `user_id`, `tugas_id`, `tanggal_kehadiran`) VALUES
-(1, 3, 3, '2024-05-13');
+(1, 3, 3, '2024-05-13'),
+(2, 2, 5, '2024-05-18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengingat`
+-- Table structure for table `list`
 --
 
-CREATE TABLE `pengingat` (
-  `pengingat_id` int(11) NOT NULL,
+CREATE TABLE `list` (
+  `list_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `tugas_id` int(11) NOT NULL,
-  `tanggal_pengingat` date NOT NULL
+  `admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `list`
+--
+
+INSERT INTO `list` (`list_id`, `user_id`, `tugas_id`, `admin`) VALUES
+(1, 2, 3, 2),
+(2, 3, 3, 2),
+(3, 3, 5, 3),
+(4, 2, 5, 3),
+(6, 2, 7, 2),
+(7, 4, 5, 3),
+(8, 4, 8, 4);
 
 -- --------------------------------------------------------
 
@@ -93,7 +107,7 @@ CREATE TABLE `tugas` (
   `admin` varchar(50) NOT NULL,
   `judul` varchar(30) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
-  `deadline` date NOT NULL,
+  `deadline` datetime NOT NULL,
   `kode_tugas` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -102,8 +116,10 @@ CREATE TABLE `tugas` (
 --
 
 INSERT INTO `tugas` (`tugas_id`, `admin`, `judul`, `deskripsi`, `deadline`, `kode_tugas`) VALUES
-(3, '2', 'test', 'lorem ipsum', '2024-05-31', 'testing'),
-(5, '3', 'Membuat MVC', 'membuat mvc degan php', '2024-05-31', 'phpmvc');
+(3, '2', 'test', 'lorem ipsum', '2024-05-31 00:00:00', 'testing'),
+(5, '3', 'Membuat MVC', 'membuat mvc degan php', '2024-05-31 23:59:00', 'phpmvc'),
+(7, '2', 'Project Akhir', 'project akhir pemrograman web', '2024-06-21 00:00:00', 'weblastproject'),
+(8, '4', 'Proyek Akhir PBO', 'membuat aplikasi sederhana', '2024-05-31 23:59:00', 'javapbo');
 
 -- --------------------------------------------------------
 
@@ -124,29 +140,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `nama`, `gambar`) VALUES
-(2, 'testing', '$2y$10$aE84fORvx575rO1jOL9asugbuMZTVI8orBWK36LhZW2dT0OQMfaPm', 'test', ''),
-(3, 'irsyadfadhil123', '$2y$10$57B.G9H2Lr1MNdsGDWOguO/42auCFhgNR.CYDv3dwncqlK/57C7VK', 'Irsyad Fadhil', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_tugas`
---
-
-CREATE TABLE `user_tugas` (
-  `user_id` int(11) NOT NULL,
-  `tugas_id` int(11) NOT NULL,
-  `admin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_tugas`
---
-
-INSERT INTO `user_tugas` (`user_id`, `tugas_id`, `admin`) VALUES
-(2, 3, 2),
-(3, 3, 2),
-(3, 5, 3);
+(2, 'kalpinkenjeran', '$2y$10$I1LCdbNJ.dtslQ/lbAZHmOveChgVKQ9RAdgdKSe/x9xnjmqOZlw5e', 'Kalfin Syah', ''),
+(3, 'irsyadfadhil123', '$2y$10$57B.G9H2Lr1MNdsGDWOguO/42auCFhgNR.CYDv3dwncqlK/57C7VK', 'Irsyad Fadhil', ''),
+(4, 'user3', '$2y$10$cEmcGNOFtFkWynXQOv5U2edk63HKmi5H1R8RW5Mo/lmLjMLgqx6zS', 'User 3', '');
 
 --
 -- Indexes for dumped tables
@@ -177,12 +173,13 @@ ALTER TABLE `kehadiran`
   ADD KEY `tugas` (`tugas_id`);
 
 --
--- Indexes for table `pengingat`
+-- Indexes for table `list`
 --
-ALTER TABLE `pengingat`
-  ADD PRIMARY KEY (`pengingat_id`),
+ALTER TABLE `list`
+  ADD PRIMARY KEY (`list_id`),
   ADD KEY `user` (`user_id`),
-  ADD KEY `tugas` (`tugas_id`);
+  ADD KEY `tugas` (`tugas_id`),
+  ADD KEY `admin` (`admin`);
 
 --
 -- Indexes for table `tugas`
@@ -197,14 +194,6 @@ ALTER TABLE `tugas`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `user_tugas`
---
-ALTER TABLE `user_tugas`
-  ADD KEY `user` (`user_id`),
-  ADD KEY `tugas` (`tugas_id`),
-  ADD KEY `admin` (`admin`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -226,25 +215,25 @@ ALTER TABLE `file`
 -- AUTO_INCREMENT for table `kehadiran`
 --
 ALTER TABLE `kehadiran`
-  MODIFY `kehadiran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `kehadiran_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `pengingat`
+-- AUTO_INCREMENT for table `list`
 --
-ALTER TABLE `pengingat`
-  MODIFY `pengingat_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `list`
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `tugas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `tugas_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -272,18 +261,11 @@ ALTER TABLE `kehadiran`
   ADD CONSTRAINT `kehadiran_ibfk_2` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pengingat`
+-- Constraints for table `list`
 --
-ALTER TABLE `pengingat`
-  ADD CONSTRAINT `pengingat_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pengingat_ibfk_2` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `user_tugas`
---
-ALTER TABLE `user_tugas`
-  ADD CONSTRAINT `user_tugas_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_tugas_ibfk_2` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `list`
+  ADD CONSTRAINT `list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `list_ibfk_2` FOREIGN KEY (`tugas_id`) REFERENCES `tugas` (`tugas_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
