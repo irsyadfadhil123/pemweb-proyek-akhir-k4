@@ -1,6 +1,6 @@
         <div class="d-flex justify-content-between bg-light align-self-stretch p-3 shadow mb-3">
             <a href="<?= BASEURL;?>/home/index" class="btn btn-outline-warning">Kembali</a>
-            <h3 class="display-6 fs-4 fw-semibold align-self-center">Edit Profile</h3>
+            <h3 class="display-6 fs-4 fw-semibold align-self-center">Profile</h3>
             <div class="align-self-center">
                 <label class="lead fw-medium">Nama User</label>
             </div>
