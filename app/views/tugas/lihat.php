@@ -10,7 +10,7 @@
             <p class="card-text"><?= $data['tugas']['deskripsi'] ?></p>
             <p>Kode Kelas: <?= $data['tugas']['tugas_id'] ?></p>
             <p>Deadline: <span class="badge badge-danger"><?= $data['tugas']['deadline'] ?></span></p>
-            <a href="<?= BASEURL ?>/tugas/listKehadiran/<?= $data['tugas']['tugas_id'] ?>" class="btn btn-secondary">Daftar Kehadiran</a>
+            <a href="<?= BASEURL ?>/kehadiran/listKehadiran/<?= $data['tugas']['tugas_id'] ?>" class="btn btn-secondary">Daftar Kehadiran</a>
         </div>
     </div>
     <div>

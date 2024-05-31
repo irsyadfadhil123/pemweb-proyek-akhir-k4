@@ -34,6 +34,8 @@ class Tugas extends Controller {
     public function upload($id) {
         $result = $this->model('Tugas_model')->singleFindById($id);
         if ($result['admin'] !== $_COOKIE['id']) {
+            $diskusi = $this->model('Diskusi_model')->findByTugasId($id);
+            $data['diskusi'] = $diskusi;
             $data['tugas'] = $result;
             $data['judul'] = "Upload Tugas";
             $this->view('templates/sessionPages');
@@ -76,12 +78,8 @@ class Tugas extends Controller {
         if (!is_null($data)) {
             $check = $this->model('List_model')->check($data['tugas_id']);
             if (!($check > 0)) {
-                if ($this->model('Pengingat_model')->add($data['tugas_id']) > 0) {
-                    $this->model('List_model')->add($data);
-                    header("Location: " . BASEURL . '/tugas/index');
-                    exit;
-                }
-                echo "<script>alert('Gagal Menambahkan Pengingat'); window.history.go(-1);</script>";
+                $this->model('List_model')->add($data);
+                header("Location: " . BASEURL . '/tugas/index');
                 exit;
                 }
             echo "<script>alert('Tugas sudah ditambahkan'); window.history.go(-1);</script>";

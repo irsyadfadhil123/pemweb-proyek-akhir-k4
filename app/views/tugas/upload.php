@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="d-flex align-self-end mb-3">
-                <a href="<?= BASEURL?>/tugas/kehadiran/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info me-3">Catat Kehadiran</a>
+                <a href="<?= BASEURL?>/kehadiran/kehadiran/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info me-3">Catat Kehadiran</a>
                 <a href="" class="btn btn-info">Upload File</a>
             </div>
             <div class="d-flex flex-column bg-dark-subtle rounded align-self-start p-3 mb-3">
@@ -37,3 +37,26 @@
             </div>
             <a href="" class="btn btn-info align-self-end">Buat Diskusi</a>
         </div>
+
+<form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post">
+    <label for="pesan">Kirim Pesan</label>
+    <input type="textarea" name="pesan" placeholder="Tulis pesan disini" required>
+    <button type="submit">Kirim</button>
+</form>
+
+<?php
+if (!empty($data['diskusi'])) {
+foreach ($data['diskusi'] as $diskusi) {
+?>
+<p>Nama: <?= $diskusi['nama']?></p>
+<p>Username: <?= $diskusi['username']?></p>
+<p>Pesan: <?= $diskusi['pesan']?></p>
+<p>Waktu: <?= $diskusi['waktu']?></p><br>
+<?php
+    }
+} else {
+?>
+<p>Tidak ada Diskusi</p>
+<?php
+}
+?>
