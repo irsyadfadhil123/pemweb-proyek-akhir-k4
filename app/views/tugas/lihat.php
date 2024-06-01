@@ -34,3 +34,46 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post">
+    <!-- <input type="hidden" name="type" value="admin"> -->
+    <label for="pesan">Kirim Pesan</label>
+    <input type="textarea" name="pesan" placeholder="Tulis pesan disini" required>
+    <button type="submit">Kirim</button>
+</form>
+
+<?php
+if (!empty($data['diskusi'])) {
+    foreach ($data['diskusi'] as $diskusi) {
+?>
+<p>Nama: <?= ($diskusi['user_id'] == $data['tugas']['admin']) ? $diskusi['nama'] . " (Pemberi Tugas)" : $diskusi['nama']?></p>
+<p>Username: <?= $diskusi['username']?></p>
+<p>Pesan: <?= $diskusi['pesan']?></p>
+<p>Waktu: <?= $diskusi['waktu']?></p><br>
+
+<form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post">
+    <!-- <input type="hidden" name="type" value="admin"> -->
+    <input type="hidden" name="reff" value="<?= $diskusi['diskusi_id'] ?>">
+    <label for="pesan">Kirim Balasan</label>
+    <input type="textarea" name="pesan" placeholder="Tulis pesan disini" required>
+    <button type="submit">Balas</button>
+</form><br>
+
+<?php 
+        if (isset($diskusi['balasan'])) {
+            foreach ($diskusi['balasan'] as $reff) {
+?>
+<p>Nama: <?= ($reff['user_id'] == $data['tugas']['admin']) ? $reff['nama'] . " (Pemberi Tugas)" : $reff['nama']?></p>
+<p>Username: <?= $reff['username']?></p>
+<p>Pesan: <?= $reff['pesan']?></p>
+<p>Waktu: <?= $reff['waktu']?></p><br>
+<?php
+            }
+        }
+    }
+} else {
+?>
+<p>Tidak ada Diskusi</p>
+<?php
+}
+?>

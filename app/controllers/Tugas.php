@@ -50,6 +50,8 @@ class Tugas extends Controller {
     public function lihat($id) {
         $result = $this->model('Tugas_model')->singleFindById($id);
         if ($result['admin'] == $_COOKIE['id']) {
+            $diskusi = $this->model('Diskusi_model')->findByTugasId($id);
+            $data['diskusi'] = $diskusi;
             $data['tugas'] = $result;
             $data['judul'] = "Lihat Tugas";
             $this->view('templates/sessionPages');
