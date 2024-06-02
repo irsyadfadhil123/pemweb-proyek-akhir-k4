@@ -49,6 +49,7 @@
 if (!empty($data['diskusi'])) {
     foreach ($data['diskusi'] as $diskusi) {
 ?>
+<img src="<?= BASEURL . "/img/" . $diskusi['gambar'] ?>">
 <p>Nama: <?= ($diskusi['user_id'] == $data['tugas']['admin']) ? $diskusi['nama'] . " (Pemberi Tugas)" : $diskusi['nama']?></p>
 <p>Username: <?= $diskusi['username']?></p>
 <p>Pesan: <?= $diskusi['pesan']?></p>
@@ -66,6 +67,7 @@ if (!empty($data['diskusi'])) {
         if (isset($diskusi['balasan'])) {
             foreach ($diskusi['balasan'] as $reff) {
 ?>
+<img src="<?= BASEURL . "/img/" . $reff['gambar'] ?>">
 <p>Nama: <?= ($reff['user_id'] == $data['tugas']['admin']) ? $reff['nama'] . " (Pemberi Tugas)" : $reff['nama']?></p>
 <p>Username: <?= $reff['username']?></p>
 <p>Pesan: <?= $reff['pesan']?></p>

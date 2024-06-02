@@ -61,7 +61,7 @@ class Home extends Controller {
                 header("Location: " . BASEURL . '/home/profil');
                 exit;
             }
-            echo "<script>alert('Format Gambar salah!'); window.history.go(-1);</script>";
+            echo "<script>alert('Format Gambar salah/ukuran terlalu besar!'); window.history.go(-1);</script>";
             exit;
         }
         echo "<script>alert('Password yang anda masukkan salah!'); window.history.go(-1);</script>";
@@ -70,6 +70,7 @@ class Home extends Controller {
     public function verifikasiGambar($data) {
         $hasil['kosong'] = false;
         $hasil['valid'] = true;
+        
         $namaFile = $data['name'];
         $ukuranFile = $data['size'];
         $error = $data['error'];
