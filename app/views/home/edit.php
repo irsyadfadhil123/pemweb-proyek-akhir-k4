@@ -7,8 +7,11 @@
         </div>
 
         <div class="d-flex justify-content-center align-items-center" style="height: 85vh;">
-            <form action="<?= BASEURL;?>/home/editProfil" method="post" class="d-flex flex-column" style="width: 75vw;">
+            <form action="<?= BASEURL;?>/home/editProfil" method="post" enctype="multipart/form-data" class="d-flex flex-column" style="width: 75vw;">
                 <h3 class="display-5 mb-3">Edit Profile</h3>
+                <!-- fitur update gambar -->
+                <input type="file" name="gambar">
+                <!-- fitur update gambar -->                
                 <input type="hidden" name="password" value="<?= $data['profil']['password'] ?>">
                 <div class="d-flex mb-3">
                     <input type="text"name="username" value="<?= $data['profil']['username'] ?>" placeholder="Username" required class="form-control">

@@ -9,21 +9,20 @@ class User_model {
     }
 
     public function addUser($data) {
-        $query = "INSERT INTO {$this->table} (nama, username, password) VALUES (?, ?, ?)";
+        $query = "INSERT INTO {$this->table} (nama, username, password, gambar) VALUES (?, ?, ?, ?)";
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         $this->db->query($query);
-        $this->db->bind($data['nama'], $data['username'], $data['password']);
+        $this->db->bind($data['nama'], $data['username'], $data['password'], "nophoto");
         $this->db->execute();
     
         return $this->db->rowCount();
     }
 
     public function update($data) {
-        $query = "UPDATE {$this->table} SET username = ?, nama = ?, password = ? WHERE user_id = ?";
+        $query = "UPDATE {$this->table} SET username = ?, nama = ?, password = ?, gambar = ? WHERE user_id = ?";
         $this->db->query($query);
-        $this->db->bind($data['username'], $data['nama'], $data['newPassword'], $_COOKIE['id']);
+        $this->db->bind($data['username'], $data['nama'], $data['newPassword'], $data['gambar'], $_COOKIE['id']);
         $this->db->execute();
-
     }
 
     public function findById() {
@@ -67,17 +66,4 @@ class User_model {
         return false;
     }
 
-    public function cookieCheck($data) {
-        // $query = "SELECT username FROM {$this->table} WHERE id = ?";
-        // $this->db->query($query);
-        // $this->db->bind($_COOKIE['id']);
-        // $result = $this->db->single();
-
-        // if (!is_null($result)) {
-        //     if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
-        //         setcookie('username', $result['username'], time() + 600, '/');
-        //     }
-        // }
-        // return $result;
-    }
 }

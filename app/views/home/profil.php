@@ -8,7 +8,7 @@
 
         <div class="d-flex justify-content-center align-items-center" style="height: 85vh;">
             <div class="d-flex flex-column align-items-center" style="width: 75vw;">
-                <img src="..." class="rounded-circle mb-4 p-2 border border-dark-subtle" style="width: 200px; height: 200px;">
+                <img src="<?= BASEURL . "/img/" . $data['profil']['gambar'] ?>" class="rounded-circle mb-4 p-2 border border-dark-subtle" style="width: 200px; height: 200px;">
                 <h2 class="display-6 mb-3"><?= $data['profil']['nama'] ?></h2>
                 <div style="width: 400px;">
                     <label class="lead mb-3">Username: </label>
