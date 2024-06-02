@@ -14,7 +14,7 @@
   - Pengumpul Tugas & Pemberi Tugas 
   - Mengubah identitas akun yang telah terdaftar saat melakukan register.
 
-- [ ] **4. Forum Diskusi**
+- [x] **4. Forum Diskusi**
   - Pengumpul Tugas & Pemberi Tugas
   - Menyediakan ruang untuk diskusi antara Pengumpul Tugas dan Pemberi Tugas tentang tugas tertentu, memfasilitasi kolaborasi dan pemecahan masalah.
 
@@ -22,7 +22,7 @@
   - Pemberi Tugas
   - Memungkinkan Pemberi Tugas untuk menyunting dan menilai tugas secara langsung di dalam aplikasi, meningkatkan efisiensi dalam memberikan umpan balik kepada Pengumpul Tugas.
 
-- [ ] **6. Pengingat Tugas**
+- [x] **6. Pengingat Tugas**
   - Pengumpul Tugas
   - Mengirimkan pemberitahuan kepada Pengumpul Tugas tentang tugas yang akan segera berakhir, membantu mereka untuk tetap teratur dan tidak melewatkan batas waktu.
 
@@ -30,7 +30,7 @@
   - Pengumpul Tugas
   - Memungkinkan Pengumpul Tugas untuk mengunggah berkas tugas dalam berbagai format seperti dokumen, gambar, atau video, untuk kemudahan pengumpulan tugas.
 
-- [ ] **8. Catatan Kehadiran** 
+- [x] **8. Catatan Kehadiran** 
   - Pemberi Tugas
   - Merekam kehadiran Pengumpul Tugas secara otomatis atau manual, membantu Pemberi Tugas untuk melacak partisipasi Pengumpul Tugas dalam kelas.
 
