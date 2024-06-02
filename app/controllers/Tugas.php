@@ -63,6 +63,20 @@ class Tugas extends Controller {
         echo "<script>alert('Anda tidak memiliki akses ke tugas ini!'); window.history.go(-1);</script>";
     }
 
+    public function uploadFile($id) {
+        $result = $this->model('Tugas_model')->singleFindById($id);
+        if ($result['admin'] !== $_COOKIE['id']) {
+            $data['tugas'] = $result;
+            $data['judul'] = "Lihat Tugas";
+            $this->view('templates/sessionPages');
+            $this->view('templates/header', $data);
+            $this->view("tugas/uploadFile", $data);
+            $this->view('templates/footer');
+            exit;
+        }
+        echo "<script>alert('Anda tidak memiliki akses ke tugas ini!'); window.history.go(-1);</script>";
+    }
+
     public function buat() {
         $data = $this->model('Tugas_model')->add($_POST);
         if ($data) {
