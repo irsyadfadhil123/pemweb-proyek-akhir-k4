@@ -17,7 +17,7 @@
                         <form v-if="show" action="<?= BASEURL; ?>/register/tambah" method="post" class="d-flex flex-column border border-secondary-subtle p-4 shadow">
                             <p class="text-light fs-1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Register</p>
                             <input type="text" name="username" placeholder="Username" class="form-control mb-2 shadow" required>
-                            <input type="text" name="nama" placeholder="Nama" class="form-control mb-2 shadow" required>
+                            <input type="text" name="nama" placeholder="Name" class="form-control mb-2 shadow" required>
                             <input type="password" name="password" placeholder="Password" class="form-control mb-2 shadow" required>
                             <a href="<?= BASEURL; ?>/login" class="align-self-end link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-4">I already have an account</a>
                             <?php Flasher::flash();?>

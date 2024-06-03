@@ -8,7 +8,7 @@
                             <input type="password" name="password" placeholder="Password" class="form-control mb-2 shadow" required>
                             <div class="form-check mb-2">
                                 <input type="checkbox" name="remember" class="form-check-input">
-                                <label for="remember" class="form-check-label text-light">Ingat saya</label>
+                                <label for="remember" class="form-check-label text-light">Remember Me</label>
                             </div>
                             <a href="<?= BASEURL; ?>/register" class="align-self-end link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-2">I don't have an account</a>
                             <?php Flasher::flash();?>
