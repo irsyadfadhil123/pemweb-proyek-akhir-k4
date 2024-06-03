@@ -19,9 +19,9 @@
                             <input type="text" name="username" placeholder="Username" class="form-control mb-2 shadow" required>
                             <input type="text" name="nama" placeholder="Name" class="form-control mb-2 shadow" required>
                             <input type="password" name="password" placeholder="Password" class="form-control mb-2 shadow" required>
-                            <a href="<?= BASEURL; ?>/login" class="align-self-end link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-4">I already have an account</a>
-                            <?php Flasher::flash();?>
-                            <button type="submit" class="btn btn-outline-warning align-self-start shadow">Register</button>
+                            <a href="<?= BASEURL; ?>/login" class="align-self-end link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-2">I already have an account</a>
+                            <label class="text-danger mt-1 mb-2"><?php Flasher::flash();?></label>
+                            <button type="submit" class="btn btn-outline-warning align-self-start shadow mt-2">Register</button>
                         </form>
                     </Transition>
                 </div>
