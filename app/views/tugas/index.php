@@ -19,7 +19,22 @@
                 <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3">Tambah Tugas</a>
                 <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info">Buat Tugas</a>
             </div>
+<?php
+$jumlahDataPerHalaman = 6;
 
+$jumlahTugasNonAdmin = $data['jumlahNonAdmin'];
+$jumlahHalamanTugasNonAdmin = ceil($jumlahTugasNonAdmin / $jumlahDataPerHalaman);
+$paramTugasNonAdmin = explode('/', $_GET['url']);
+$halamanAktifTugasNonAdmin = empty($paramTugasNonAdmin[2]) ? 1 : (int)$paramTugasNonAdmin[2];
+
+$jumlahTugasAdmin = $data['jumlahAdmin'];
+$jumlahHalamanTugasAdmin = ceil($jumlahTugasAdmin / $jumlahDataPerHalaman);
+$paramTugasAdmin = explode('/', $_GET['url']);
+$halamanAktifTugasAdmin = empty($paramTugasAdmin[3]) ? 1 : (int)$paramTugasAdmin[3];
+
+var_dump($halamanAktifTugasNonAdmin);
+var_dump($halamanAktifTugasAdmin);
+?>
             <h3 class="display-6 fw-semibold mb-3">Tugas yang ditambahkan</h3>
 
             <div class="d-flex mb-3">

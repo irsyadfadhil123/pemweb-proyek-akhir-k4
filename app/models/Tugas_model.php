@@ -52,6 +52,45 @@ class Tugas_model {
         return $all;
     }
 
+    public function findByIdNonAdmin($data) {
+        $all = [];
+        foreach ($data as $daftar) {
+            $query = "SELECT * FROM {$this->table} WHERE tugas_id = ? AND admin != ?";
+            $this->db->query($query);
+            $this->db->bind($daftar['tugas_id'], $_COOKIE['id']);
+            $result = $this->db->single();
+
+            if (!empty($result)) {
+                $all[] = $result;
+            }
+        }
+        return $all;
+    }
+
+    public function findByIdAdmin($data) {
+        $all = [];
+        foreach ($data as $daftar) {
+            $query = "SELECT * FROM {$this->table} WHERE tugas_id = ? AND admin = ?";
+            $this->db->query($query);
+            $this->db->bind($daftar['tugas_id'], $_COOKIE['id']);
+            $result = $this->db->single();
+            
+            if (!empty($result)) {
+                $all[] = $result;
+            }
+        }
+        return $all;
+
+    }
+
+    public function findWithLimitNonAdmin($data) {
+
+    }
+
+    public function findWithLimitAdmin($data) {
+
+    }
+
     public function findByTime($data) {
         $id = $_COOKIE['id'];
         $all = [];

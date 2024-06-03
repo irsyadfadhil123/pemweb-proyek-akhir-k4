@@ -1,10 +1,19 @@
 <?php
 class Tugas extends Controller {
 
-    public function index() {
+    public function index($nonAdmin = 1, $admin = 1) {
         $daftar = $this->model('List_model')->findById();
-        $tugas = $this->model('Tugas_model')->findById($daftar);
-        $data['tugas'] = $tugas;
+        $tugasnonAdmin = $this->model('Tugas_model')->findByIdNonAdmin($daftar);
+        $tugasAdmin = $this->model('Tugas_model')->findByIdAdmin($daftar);
+        $data['jumlahNonAdmin'] = count($tugasnonAdmin);
+        $data['jumlahAdmin'] = count($tugasAdmin);
+
+        // var_dump($jumlahTugasNonAdmin);
+        // exit;
+
+        // $daftar = $this->model('List_model')->findById();
+        // $tugas = $this->model('Tugas_model')->findById($daftar);
+        // $data['tugas'] = $tugas;
         $data['judul'] = "Tugas";
         $this->view('templates/sessionPages');
         $this->view('templates/header', $data);
