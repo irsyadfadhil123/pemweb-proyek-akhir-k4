@@ -1,9 +1,6 @@
 <?php
 class Login extends Controller{
 
-    public function __construct() {
-        parent::__construct();
-    }
     public function index() {
         $data['judul'] = "Login Page";
         $this->view('templates/sessionLogin');
@@ -17,9 +14,11 @@ class Login extends Controller{
 
         if ($result) {
             $_SESSION["login"] = true;
+            Flasher::setFlash('Login sukses', 'Pemberitahuan', 'success');
             header("Location:" . BASEURL . "/home");
             exit;
         } else {
+            Flasher::setFlash('Username/Password Salah', 'Pemberitahuan', 'danger');
             header("Location:" . BASEURL . "/login");
         }
     }

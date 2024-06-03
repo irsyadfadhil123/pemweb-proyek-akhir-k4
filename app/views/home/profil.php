@@ -5,6 +5,13 @@
                 <label class="lead fw-medium">Nama User</label>
             </div>
         </div>
+<!-- flasher -->
+<div class="row">
+    <div class="col-lg-6">
+        <?php Flasher::flash();?>
+    </div>
+</div>
+<!-- flasher -->
 
         <div class="d-flex justify-content-center align-items-center" style="height: 85vh;">
             <div class="d-flex flex-column align-items-center" style="width: 75vw;">

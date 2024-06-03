@@ -2,7 +2,6 @@
 
 class Controller {
     public function __construct(){
-        session_start();
     }
     public function view($view, $data = []) {
         require_once '../app/views/' . $view . '.php';

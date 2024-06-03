@@ -7,7 +7,13 @@
         </div>
 
         <div class="d-flex flex-column p-4" style="height: 100vh;">
-            
+                <!-- flasher -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <?php Flasher::flash();?>
+                    </div>
+                </div>
+                <!-- flasher -->
             <div class="d-flex mb-3">
                 <div class="d-flex flex-column flex-grow-1 bg-dark-subtle rounded-start p-3">
                     <label class="lead"><?= $data['tugas']['tugas_id'] ?></label>

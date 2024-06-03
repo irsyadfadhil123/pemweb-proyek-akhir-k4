@@ -1,9 +1,6 @@
 <?php
 
 class Home extends Controller {
-    public function __construct() {
-        parent::__construct();
-    }
 
     public function index() {
         $list = $this->model('List_model')->findById();
@@ -43,33 +40,44 @@ class Home extends Controller {
         if (password_verify($_POST['oldPassword'], $_POST['password'])) {
             $data = $_FILES['gambar'];
             $verifikasi = $this->verifikasiGambar($data);
-            if ($verifikasi['valid']) {
-                $user = $this->model('User_model')->findById();
-                $verifikasi['kosong'] ? $_POST['gambar'] = $user['gambar'] : $_POST['gambar'] = $verifikasi['namaGambar'];
-                if (!empty($_POST['newPassword'])) {
-                    if ($_POST['newPassword'] === $_POST['confirmPasword']) {
-                        $_POST['newPassword'] = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
-                        $this->model('User_model')->update($_POST);
-                        header("Location: " . BASEURL . '/home/profil');
+            if ($verifikasi['ekstensi']) {
+                if ($verifikasi['ukuran']) {
+                    $user = $this->model('User_model')->findById();
+                    $verifikasi['kosong'] ? $_POST['gambar'] = $user['gambar'] : $_POST['gambar'] = $verifikasi['namaGambar'];
+                    if (!empty($_POST['newPassword'])) {
+                        if ($_POST['newPassword'] === $_POST['confirmPasword']) {
+                            $_POST['newPassword'] = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
+                            $this->model('User_model')->update($_POST);
+                            Flasher::setFlash('Sukses mengedit Profil', 'Pemberitahuan', 'success');
+                            header("Location: " . BASEURL . '/home/profil');
+                            exit;
+                        }
+                        Flasher::setFlash('Konfirmasi Password yang anda masukkan salah!', 'Pemberitahuan', 'danger');
+                        echo "<script>window.history.go(-1);</script>";
                         exit;
                     }
-                    echo "<script>alert('Konfirmasi Password yang anda masukkan salah!'); window.history.go(-1);</script>";
-                    exit;
+                    $_POST['newPassword'] = $user['password'];
+                    $this->model('User_model')->update($_POST);
+                    Flasher::setFlash('Edit Profil Berhasil', 'Pemberitahuan', 'success');
+                    header("Location: " . BASEURL . '/home/profil');
+                    exit;    
                 }
-                $_POST['newPassword'] = $user['password'];
-                $this->model('User_model')->update($_POST);
-                header("Location: " . BASEURL . '/home/profil');
-                exit;
+                Flasher::setFlash('Edit Profil Gagal, ukuran file terlalu besar', 'Pemberitahuan', 'danger');
+                echo "<script>window.history.go(-1);</script>";
+                exit;    
             }
-            echo "<script>alert('Format Gambar salah/ukuran terlalu besar!'); window.history.go(-1);</script>";
+            Flasher::setFlash('Edit Profil Gagal, format file salah', 'Pemberitahuan', 'danger');
+            echo "<script>window.history.go(-1);</script>";
             exit;
         }
-        echo "<script>alert('Password yang anda masukkan salah!'); window.history.go(-1);</script>";
+        Flasher::setFlash('Edit Profil Gagal, Password lama yang anda masukkan salah!', 'Pemberitahuan', 'danger');
+        echo "<script>window.history.go(-1);</script>";
     }
 
     public function verifikasiGambar($data) {
         $hasil['kosong'] = false;
-        $hasil['valid'] = true;
+        $hasil['ekstensi'] = true;
+        $hasil['ukuran'] = true;
         
         $namaFile = $data['name'];
         $ukuranFile = $data['size'];
@@ -85,12 +93,12 @@ class Home extends Controller {
         $ekstensiGambar = explode('.', $namaFile);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-            $hasil['valid'] = false;
+            $hasil['ekstensi'] = false;
             return $hasil;
         }
 
         if ($ukuranFile > 2000000) {
-            $hasil['valid'] = false;
+            $hasil['ukuran'] = false;
             return $hasil;
         }
 

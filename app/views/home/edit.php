@@ -28,4 +28,11 @@
                     <button type="submit" class="btn btn-outline-secondary">Submit</button>
                 </div>
             </form>
+            <!-- flasher -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php Flasher::flash();?>
+                </div>
+            </div>
+            <!-- flasher -->            
         </div>

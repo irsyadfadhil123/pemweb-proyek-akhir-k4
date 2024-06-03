@@ -16,5 +16,4 @@ class File_model {
 
         return $this->db->rowCount();
     }
-
 }

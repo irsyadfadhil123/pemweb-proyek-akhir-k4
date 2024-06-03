@@ -18,6 +18,13 @@
                 <div class="flex-fill">
                     
                 </div>
+                <!-- flasher -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <?php Flasher::flash();?>
+                    </div>
+                </div>
+                <!-- flasher -->
             </div>
         </div>
 

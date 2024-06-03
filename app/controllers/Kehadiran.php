@@ -1,9 +1,6 @@
 <?php
 
 class Kehadiran extends Controller {
-    public function __construct() {
-        parent::__construct();
-    }
 
     public function listKehadiran($tugas_id) {
         $result = $this->model('Tugas_model')->singleFindById($tugas_id);
@@ -18,18 +15,22 @@ class Kehadiran extends Controller {
             $this->view('templates/footer');
             exit;
         }
-        echo "<script>alert('Anda tidak memiliki akses ke List Kehadiran ini!'); window.history.go(-1);</script>";
+        Flasher::setFlash('Anda tidak memiliki akses ke List Kehadiran ini!', 'Pemberitahuan', 'warning');
+        echo "<script>window.history.go(-1);</script>";
     }
     public function kehadiran($data) {
         if($this->model('Kehadiran_model')->verify($data)) {
             if($this->model('Kehadiran_model')->add($data) > 0) {
-                echo "<script>alert('Catatan Kehadiran berhasil diperbarui'); window.history.go(-1);</script>";
+                Flasher::setFlash('Catatan Kehadiran berhasil diperbarui!', 'Pemberitahuan', 'success');
+                echo "<script>window.history.go(-1);</script>";
                 exit;
             }
-            echo "<script>alert('Catatan Kehadiran gagal diperbarui'); window.history.go(-1);</script>";
+            Flasher::setFlash('Catatan Kehadiran gagal diperbarui!', 'Pemberitahuan', 'danger');
+            echo "<script> window.history.go(-1);</script>";
             exit;
         }
-        echo "<script>alert('Catatan Kehadiran sudah ada'); window.history.go(-1);</script>";
+        Flasher::setFlash('Catatan Kehadiran sudah ada!', 'Pemberitahuan', 'info');
+        echo "<script>window.history.go(-1);</script>";
         exit;
     }
 

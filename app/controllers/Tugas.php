@@ -1,9 +1,6 @@
 <?php
 class Tugas extends Controller {
 
-    public function __construct() {
-        parent::__construct();
-    }
     public function index() {
         $daftar = $this->model('List_model')->findById();
         $tugas = $this->model('Tugas_model')->findById($daftar);
@@ -44,7 +41,8 @@ class Tugas extends Controller {
             $this->view('templates/footer');
             exit;
         }
-        echo "<script>alert('Anda tidak memiliki akses ke tugas ini!'); window.history.go(-1);</script>";
+        Flasher::setFlash('Anda tidak memiliki akses ke tugas ini!', 'Pemberitahuan', 'warning');
+        echo "<script> window.history.go(-1);</script>";
     }
 
     public function lihat($id) {
@@ -60,7 +58,8 @@ class Tugas extends Controller {
             $this->view('templates/footer');
             exit;
         }
-        echo "<script>alert('Anda tidak memiliki akses ke tugas ini!'); window.history.go(-1);</script>";
+        Flasher::setFlash('Anda tidak memiliki akses ke tugas ini!', 'Pemberitahuan', 'warning');
+        echo "<script> window.history.go(-1);</script>";
     }
 
     public function uploadFile($id) {
@@ -74,7 +73,8 @@ class Tugas extends Controller {
             $this->view('templates/footer');
             exit;
         }
-        echo "<script>alert('Anda tidak memiliki akses ke tugas ini!'); window.history.go(-1);</script>";
+        Flasher::setFlash('Anda tidak memiliki akses ke tugas ini!', 'Pemberitahuan', 'warning');
+        echo "<script> window.history.go(-1);</script>";
     }
 
     public function buat() {
@@ -83,10 +83,12 @@ class Tugas extends Controller {
             $task = $this->model('Tugas_model')->findByKode($data);
             $this->model('List_model')->add($task);
 
+            Flasher::setFlash('Berhasil membuat Tugas!', 'Pemberitahuan', 'success');
             header("Location: " . BASEURL . '/tugas/index');
             exit;
         }
-        echo "<script>alert('Gagal membuat Tugas')</script>";
+        Flasher::setFlash('Gagal membuat Tugas!', 'Pemberitahuan', 'danger');
+        echo "<script> window.history.go(-1);</script>";
     }
 
     public function tambah() {
@@ -95,13 +97,16 @@ class Tugas extends Controller {
             $check = $this->model('List_model')->check($data['tugas_id']);
             if (!($check > 0)) {
                 $this->model('List_model')->add($data);
+                Flasher::setFlash('Berhasil menambahkan Tugas!', 'Pemberitahuan', 'success');
                 header("Location: " . BASEURL . '/tugas/index');
                 exit;
                 }
-            echo "<script>alert('Tugas sudah ditambahkan'); window.history.go(-1);</script>";
+                Flasher::setFlash('Tugas sudah ditambahkan!', 'Pemberitahuan', 'info');
+            echo "<script>window.history.go(-1);</script>";
             exit;
         }
-        echo "<script>alert('Tugas tidak ditemukan'); window.history.go(-1);</script>";
+        Flasher::setFlash('Tugas tidak ditemukan!', 'Pemberitahuan', 'danger');
+        echo "<script> window.history.go(-1);</script>";
         exit;
     }
 

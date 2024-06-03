@@ -5,6 +5,13 @@
                 <label class="lead fw-medium">Nama User</label>
             </div>
         </div>
+       <!-- flasher -->
+       <div class="row">
+           <div class="col-lg-6">
+               <?php Flasher::flash();?>
+           </div>
+       </div>
+       <!-- flasher -->
 
         <div class="d-flex flex-column align-items-start p-4">
             
@@ -66,5 +73,4 @@
             }
             ?>
             </div>
-            
         </div>

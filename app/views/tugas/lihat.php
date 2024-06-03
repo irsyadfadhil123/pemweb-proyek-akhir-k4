@@ -1,3 +1,10 @@
+<!-- flasher -->
+<div class="row">
+    <div class="col-lg-6">
+        <?php Flasher::flash();?>
+    </div>
+</div>
+<!-- flasher -->
 <div class="container mt-4">
     <a href="<?= BASEURL ?>/tugas/index" class="btn btn-secondary mb-4">Kembali</a>
     <div class="d-flex justify-content-between align-items-center mb-4">

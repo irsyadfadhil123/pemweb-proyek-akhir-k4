@@ -1,3 +1,10 @@
+<!-- flasher -->
+<div class="row">
+    <div class="col-lg-6">
+        <?php Flasher::flash();?>
+    </div>
+</div>
+<!-- flasher -->
 <?php $previous = "javascript:history.go(-1)"; ?>
 <a href="<?= $previous ?>">Kembali</a><br>
 
