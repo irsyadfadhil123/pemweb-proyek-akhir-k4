@@ -19,29 +19,21 @@
                 <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3">Tambah Tugas</a>
                 <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info">Buat Tugas</a>
             </div>
-<?php
-$jumlahDataPerHalaman = 6;
-
-$jumlahTugasNonAdmin = $data['jumlahNonAdmin'];
-$jumlahHalamanTugasNonAdmin = ceil($jumlahTugasNonAdmin / $jumlahDataPerHalaman);
-$paramTugasNonAdmin = explode('/', $_GET['url']);
-$halamanAktifTugasNonAdmin = empty($paramTugasNonAdmin[2]) ? 1 : (int)$paramTugasNonAdmin[2];
-
-$jumlahTugasAdmin = $data['jumlahAdmin'];
-$jumlahHalamanTugasAdmin = ceil($jumlahTugasAdmin / $jumlahDataPerHalaman);
-$paramTugasAdmin = explode('/', $_GET['url']);
-$halamanAktifTugasAdmin = empty($paramTugasAdmin[3]) ? 1 : (int)$paramTugasAdmin[3];
-
-var_dump($halamanAktifTugasNonAdmin);
-var_dump($halamanAktifTugasAdmin);
-?>
+            <!-- pagination nonAdmin -->
+<?php for ( $i = 1; $i <= $data['pagination']['jumlahHalamanTugasNonAdmin']; $i++) : ?>
+    <?php if ($i == $data['pagination']['halamanAktifTugasNonAdmin']) : ?>
+        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>" style="font-weight: bold;"><?= $i; ?></a>
+    <?php else : ?>
+        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>"><?= $i; ?></a>
+    <?php endif; ?>
+<?php endfor; ?>
+            <!-- pagination nonAdmin -->
             <h3 class="display-6 fw-semibold mb-3">Tugas yang ditambahkan</h3>
 
             <div class="d-flex mb-3">
             <?php 
-            if (!empty($data['tugas'])) {
-                foreach ($data['tugas'] as $tugas_tergabung) {
-                    if ($tugas_tergabung['admin'] !== $_COOKIE['id']) {
+            if (!empty($data['hasilTugasNonAdmin'])) {
+                foreach ($data['hasilTugasNonAdmin'] as $tugas_tergabung) {
             ?>
                 <div class="d-flex flex-column me-4" style="width: 250px; height: 250px;">
                     <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light">
@@ -54,7 +46,6 @@ var_dump($halamanAktifTugasAdmin);
                     </div>
                 </div>
             <?php 
-                    }
                 }
             } else {
                 echo "Data tugas tidak tersedia.";
@@ -65,10 +56,18 @@ var_dump($halamanAktifTugasAdmin);
             <h3 class="display-6 fw-semibold mb-3">Tugas yang dibuat</h3>
 
             <div class="d-flex mb-3">
+            <!-- pagination admin -->
+<?php for ( $i = 1; $i <= $data['pagination']['jumlahHalamanTugasAdmin']; $i++) : ?>
+    <?php if ($i == $data['pagination']['halamanAktifTugasAdmin']) : ?>
+        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>" style="font-weight: bold;"><?= $i; ?></a>
+    <?php else : ?>
+        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>"><?= $i; ?></a>
+    <?php endif; ?>
+<?php endfor; ?>
+            <!-- pagination admin -->
             <?php 
-            if (!empty($data['tugas'])) {
-                foreach ($data['tugas'] as $tugas_dibuat) {
-                    if ($tugas_dibuat['admin'] == $_COOKIE['id']) {
+            if (!empty($data['hasilTugasAdmin'])) {
+                foreach ($data['hasilTugasAdmin'] as $tugas_dibuat) {
             ?>
                 <div class="d-flex flex-column me-4" style="width: 250px; height: 250px;">
                     <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light">
@@ -81,7 +80,6 @@ var_dump($halamanAktifTugasAdmin);
                     </div>
                 </div>
             <?php 
-                    }
                 }
             } else {
                 echo "Data tugas tidak tersedia.";

@@ -27,6 +27,26 @@ class List_model {
         return $result;
     }
 
+    public function findWithLimitNonAdmin($data) {
+        $id = $_COOKIE['id'];
+        $query = "SELECT * FROM {$this->table} WHERE user_id = ? AND admin != ? LIMIT ?, ?";
+        $this->db->query($query);
+        $this->db->bind($id, $id, $data['awalTugasNonAdmin'], $data['jumlahDataPerHalaman']);
+        $result = $this->db->multi();
+
+        return $result;
+    }
+
+    public function findWithLimitAdmin($data) {
+        $id = $_COOKIE['id'];
+        $query = "SELECT * FROM {$this->table} WHERE user_id = ? AND admin = ? LIMIT ?, ?";
+        $this->db->query($query);
+        $this->db->bind($id, $id, $data['awalTugasAdmin'], $data['jumlahDataPerHalaman']);
+        $result = $this->db->multi();
+
+        return $result;
+    }
+
     public function check($data) {
         $id = $_COOKIE['id'];
         $query = "SELECT COUNT(*) as total FROM {$this->table} WHERE user_id = ? AND tugas_id = ?";

@@ -74,21 +74,44 @@ class Tugas_model {
             $this->db->query($query);
             $this->db->bind($daftar['tugas_id'], $_COOKIE['id']);
             $result = $this->db->single();
-            
+
             if (!empty($result)) {
                 $all[] = $result;
             }
         }
         return $all;
-
     }
 
-    public function findWithLimitNonAdmin($data) {
+    public function findWithLimitNonAdmin($data, $pagination) {
+        $all = [];
+        // foreach ($data as $daftar) {
+            $query = "SELECT * FROM {$this->table} WHERE admin != ? LIMIT ?, ?";
+            $this->db->query($query);
+            $this->db->bind($_COOKIE['id'], $pagination['awalTugasNonAdmin'], $pagination['jumlahDataPerHalaman']);
+            $result = $this->db->single();
 
+            if (!empty($result)) {
+                $all[] = $result;
+            }
+        // }
+        var_dump($pagination);
+        exit;
+        return $all;
     }
 
-    public function findWithLimitAdmin($data) {
+    public function findWithLimitAdmin($data, $pagination) {
+        $all = [];
+        foreach ($data as $daftar) {
+            $query = "SELECT * FROM {$this->table} WHERE tugas_id = ? AND admin = ? LIMIT ?, ?";
+            $this->db->query($query);
+            $this->db->bind($daftar['tugas_id'], $_COOKIE['id'], $pagination['awalTugasAdmin'], $pagination['jumlahDataPerHalaman']);
+            $result = $this->db->single();
 
+            if (!empty($result)) {
+                $all[] = $result;
+            }
+        }
+        return $all;
     }
 
     public function findByTime($data) {

@@ -1,24 +1,53 @@
 <?php
 class Tugas extends Controller {
 
-    public function index($nonAdmin = 1, $admin = 1) {
+    public function index() {
+        
         $daftar = $this->model('List_model')->findById();
         $tugasnonAdmin = $this->model('Tugas_model')->findByIdNonAdmin($daftar);
         $tugasAdmin = $this->model('Tugas_model')->findByIdAdmin($daftar);
         $data['jumlahNonAdmin'] = count($tugasnonAdmin);
         $data['jumlahAdmin'] = count($tugasAdmin);
+        $pagination = $this->pagination($data);
+        $data['pagination'] = $pagination;
 
-        // var_dump($jumlahTugasNonAdmin);
-        // exit;
-
-        // $daftar = $this->model('List_model')->findById();
-        // $tugas = $this->model('Tugas_model')->findById($daftar);
-        // $data['tugas'] = $tugas;
+        $listTugasNonAdmin = $this->model('List_model')->findWithLimitNonAdmin($pagination);
+        $listTugasAdmin = $this->model('List_model')->findWithLimitAdmin($pagination);
+        $hasilTugasNonAdmin = $this->model('Tugas_model')->findById($listTugasNonAdmin);
+        $hasilTugasAdmin = $this->model('Tugas_model')->findById($listTugasAdmin);
+        $data['hasilTugasNonAdmin'] = $hasilTugasNonAdmin;
+        $data['hasilTugasAdmin'] = $hasilTugasAdmin;
         $data['judul'] = "Tugas";
         $this->view('templates/sessionPages');
         $this->view('templates/header', $data);
         $this->view('tugas/index', $data);
         $this->view('templates/footer');
+    }
+
+    public function pagination($data) {
+        $jumlahDataPerHalaman = 3;
+
+        $jumlahTugasNonAdmin = $data['jumlahNonAdmin'];
+        $jumlahHalamanTugasNonAdmin = ceil($jumlahTugasNonAdmin / $jumlahDataPerHalaman);
+        $paramTugasNonAdmin = explode('/', $_GET['url']);
+        $halamanAktifTugasNonAdmin = empty($paramTugasNonAdmin[2]) ? 1 : (int)$paramTugasNonAdmin[2];
+        $awalTugasNonAdmin = ($jumlahDataPerHalaman * $halamanAktifTugasNonAdmin) - $jumlahDataPerHalaman;
+
+        $jumlahTugasAdmin = $data['jumlahAdmin'];
+        $jumlahHalamanTugasAdmin = ceil($jumlahTugasAdmin / $jumlahDataPerHalaman);
+        $paramTugasAdmin = explode('/', $_GET['url']);
+        $halamanAktifTugasAdmin = empty($paramTugasAdmin[3]) ? 1 : (int)$paramTugasAdmin[3];
+        $awalTugasAdmin = ($jumlahDataPerHalaman * $halamanAktifTugasAdmin) - $jumlahDataPerHalaman;
+
+        $pagination['jumlahDataPerHalaman'] = $jumlahDataPerHalaman;
+        $pagination['jumlahHalamanTugasNonAdmin'] = $jumlahHalamanTugasNonAdmin;
+        $pagination['jumlahHalamanTugasAdmin'] = $jumlahHalamanTugasAdmin;
+        $pagination['halamanAktifTugasNonAdmin'] = $halamanAktifTugasNonAdmin;
+        $pagination['halamanAktifTugasAdmin'] = $halamanAktifTugasAdmin;
+        $pagination['awalTugasNonAdmin'] = $awalTugasNonAdmin;
+        $pagination['awalTugasAdmin'] = $awalTugasAdmin;
+
+        return $pagination;
     }
 
     public function buatTugas() {
