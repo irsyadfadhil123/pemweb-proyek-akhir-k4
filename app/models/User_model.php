@@ -9,13 +9,17 @@ class User_model {
     }
 
     public function addUser($data) {
-        $query = "INSERT INTO {$this->table} (nama, username, password, gambar) VALUES (?, ?, ?, ?)";
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        $this->db->query($query);
-        $this->db->bind($data['nama'], $data['username'], $data['password'], "nophoto");
-        $this->db->execute();
-    
-        return $this->db->rowCount();
+        try {
+            $query = "INSERT INTO {$this->table} (nama, username, password, gambar) VALUES (?, ?, ?, ?)";
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $this->db->query($query);
+            $this->db->bind($data['nama'], $data['username'], $data['password'], "nophoto");
+            $this->db->execute();
+        
+            return $this->db->rowCount();
+        } catch (mysqli_sql_exception  $th) {
+            return -1;
+        }
     }
 
     public function update($data) {

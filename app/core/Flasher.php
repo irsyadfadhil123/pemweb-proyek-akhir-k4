@@ -17,5 +17,5 @@ class Flasher {
             // desain flash message
             unset($_SESSION['flash']);
         }
-    }  
+    }
 }

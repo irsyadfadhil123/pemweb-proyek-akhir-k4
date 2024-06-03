@@ -9,9 +9,14 @@ class Register extends Controller{
     }
 
     public function tambah(){
-        if($this->model('User_model')->addUser($_POST)> 0) {
+        $return = $this->model('User_model')->addUser($_POST);
+        if($return> 0) {
             Flasher::setFlash('Berhasil melakukan Register', 'Pemberitahuan', 'success');
             header("Location: " . BASEURL . '/login/index');
+            exit;
+        } else if ($return == -1) {
+            Flasher::setFlash('Username sudah ada!', 'Pemberitahuan', 'danger');
+            header("Location: " . BASEURL . "/register/index");
             exit;
         }
         Flasher::setFlash('Gagal melakukan Register', 'Pemberitahuan', 'danger');
