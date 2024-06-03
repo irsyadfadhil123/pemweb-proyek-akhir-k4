@@ -13,11 +13,7 @@ class Flasher {
     public static function flash() {
         if (isset($_SESSION['flash'])) {
             // desain flash message
-            echo '
-            <div class="alert alert-' . $_SESSION['flash']['tipe'] . '" role="alert">
-            ' . $_SESSION['flash']['status'] . ': ' . $_SESSION['flash']['pesan'] . '
-            </div>
-            ';
+            echo "<label class='text-danger mb-1 mt-1'>" . $_SESSION["flash"]["pesan"] . "</label>";
             // desain flash message
             unset($_SESSION['flash']);
         }
