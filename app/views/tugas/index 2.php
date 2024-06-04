@@ -28,9 +28,10 @@
                             <div v-if="show">
                                 <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Added Assignment</h2>
                     <?php 
-                        if (!empty($data['hasilTugasNonAdmin'])) {
+                        if (!empty($data['tugas'])) {
                             echo "<div class='d-flex mb-3 overflow-scroll'>";
-                            foreach ($data['hasilTugasNonAdmin'] as $tugas_tergabung) {
+                            foreach ($data['tugas'] as $tugas_tergabung) {
+                                if ($tugas_tergabung['admin'] !== $_COOKIE['id']) {
                     ?>      
                                 <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 250px; height: 250px;">
                                     <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light overflow-scroll">
@@ -44,36 +45,30 @@
                                     </div>
                                 </div>                                
                     <?php   
+                                }
                             echo "</div>";
                             }
                         } else { 
                     ?>
                                 <hr>
                                 <label>Assignment Data is Unavailable</label>
+
                     <?php 
-                        }
+                        } 
                     ?>
                             </div>
                         </Transition>
                     </div>
-<!-- pagination nonAdmin -->
-<?php for ( $i = 1; $i <= $data['pagination']['jumlahHalamanTugasNonAdmin']; $i++) : ?>
-    <?php if ($i == $data['pagination']['halamanAktifTugasNonAdmin']) : ?>
-        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>" style="font-weight: bold;"><?= $i; ?></a>
-    <?php else : ?>
-        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>"><?= $i; ?></a>
-    <?php endif; ?>
-<?php endfor; ?>
-<!-- pagination nonAdmin -->
 
                     <div class="bg-black bg-opacity-10 p-4 rounded">
                         <Transition name="slide-fade">
                             <div v-if="show">
                                 <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Created Assignment</h2>
                     <?php 
-                        if (!empty($data['hasilTugasAdmin'])) {
+                        if (!empty($data['tugas'])) {
                             echo "<div class='d-flex mb-3 overflow-scroll'>";
-                            foreach ($data['hasilTugasAdmin'] as $tugas_dibuat) {
+                            foreach ($data['tugas'] as $tugas_dibuat) {
+                                if ($tugas_dibuat['admin'] !== $_COOKIE['id']) {
                     ?>      
                                 <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 250px; height: 250px;">
                                     <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light overflow-scroll">
@@ -87,6 +82,7 @@
                                     </div>
                                 </div>                                
                     <?php   
+                                }
                             echo "</div>";
                             }
                         } else { 
@@ -97,19 +93,9 @@
                     <?php 
                         } 
                     ?>
-
                             </div>
                         </Transition>
                     </div>
-<!-- pagination admin -->
-<?php for ( $i = 1; $i <= $data['pagination']['jumlahHalamanTugasAdmin']; $i++) : ?>
-    <?php if ($i == $data['pagination']['halamanAktifTugasAdmin']) : ?>
-        <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>" style="font-weight: bold;"><?= $i; ?></a>
-    <?php else : ?>
-        <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>"><?= $i; ?></a>
-    <?php endif; ?>
-<?php endfor; ?>
-            <!-- pagination admin -->
 
                     <?php if(isset($_SESSION["flash"])) { ?>
                         <div class="toast-container position-fixed bottom-0 end-0 p-3">
