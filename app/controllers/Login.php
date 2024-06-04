@@ -14,11 +14,11 @@ class Login extends Controller{
 
         if ($result) {
             $_SESSION["login"] = true;
-            Flasher::setFlash('Login sukses', 'Pemberitahuan', 'success');
+            Flasher::setFlash('Login Success!', 'Pemberitahuan', 'success');
             header("Location:" . BASEURL . "/home");
             exit;
         } else {
-            Flasher::setFlash('Username/Password Salah', 'Pemberitahuan', 'danger');
+            Flasher::setFlash('Wrong Username/Password', 'Pemberitahuan', 'danger');
             header("Location:" . BASEURL . "/login");
         }
     }
