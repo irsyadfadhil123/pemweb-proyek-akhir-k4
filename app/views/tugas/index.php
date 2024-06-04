@@ -142,4 +142,21 @@
         transform: translateX(30px);
         opacity: 0;
     }
+
+    .overflow-scroll::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+    .overflow-scroll {
+        scrollbar-width: none;
+    }
+
+    .overflow-scroll {
+        -ms-overflow-style: none;
+    }
+
+    .overflow-scroll {
+        overflow: auto;
+    }
 </style>
