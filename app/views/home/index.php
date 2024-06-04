@@ -26,16 +26,16 @@
                                     if (!empty($data['pengingat'])) {
                                         foreach ($data['pengingat'] as $tugas) {
                                 ?>
-                                            <hr>
-                                            <label class="fs-5"><?= $tugas['judul'] ?></label><br>
-                                            <label><?= $tugas['deadline'] ?></label>
-                                            <label><?= $tugas['selisih'] ?></label>
+                                    <hr>
+                                    <label class="fs-5"><?= $tugas['judul'] ?></label><br>
+                                    <label><?= $tugas['deadline'] ?></label>
+                                    <label><?= $tugas['selisih'] ?></label>
                                 <?php
                                         }
                                     } else {
                                 ?>      
-                                        <hr>
-                                        <label style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">You have no assignment right now</label>
+                                    <hr>
+                                    <label style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">You have no assignment right now</label>
                                 <?php
                                     }
                                 ?>
