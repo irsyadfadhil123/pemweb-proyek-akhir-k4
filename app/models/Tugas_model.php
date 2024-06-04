@@ -21,6 +21,17 @@ class Tugas_model {
         return false;
     }
 
+    public function update($data) {
+        $id = $_COOKIE['id'];
+        $query = "UPDATE {$this->table} SET judul = ?, deskripsi = ?, deadline = ? WHERE kode_tugas = ?";
+        $this->db->query($query);
+        $this->db->bind($data['judul'], $data['deskripsi'], $data['deadline'], $data['kode_tugas']);
+        $this->db->execute();
+        $result = $this->db->rowCount();
+        
+        return $result;
+    }
+
     public function findByKode($data) {
         $query = "SELECT * FROM {$this->table} WHERE kode_tugas = ?";
         $this->db->query($query);
