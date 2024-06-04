@@ -28,7 +28,7 @@
                         <?php if (!empty($data['hasilTugasNonAdmin'])): ?>
                             <div class='d-flex mb-3 overflow-scroll'>
                                 <?php foreach ($data['hasilTugasNonAdmin'] as $tugas_tergabung): ?>
-                                    <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 250px; height: 250px;">
+                                    <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 300px; height: 250px;">
                                         <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light overflow-scroll">
                                             <label class="lead fw-semibold"><?= $tugas_tergabung['judul']; ?></label>
                                             <hr>
@@ -44,7 +44,7 @@
                         <?php else: ?>
                             <hr>
                             <label>Assignment Data is Unavailable</label>
-                        <?php endif; ?>
+                        <?php endif; ?>                                    
                     </div>
                 </transition>
             </div>
@@ -66,7 +66,7 @@
                         <?php if (!empty($data['hasilTugasAdmin'])): ?>
                             <div class='d-flex mb-3 overflow-scroll'>
                                 <?php foreach ($data['hasilTugasAdmin'] as $tugas_dibuat): ?>
-                                    <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 250px; height: 250px;">
+                                    <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 300px; height: 250px;">
                                         <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light overflow-scroll">
                                             <label class="lead fw-semibold"><?= $tugas_dibuat['judul']; ?></label>
                                             <hr>
