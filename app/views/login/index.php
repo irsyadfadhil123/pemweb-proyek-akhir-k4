@@ -11,7 +11,7 @@
                                 <label for="remember" class="form-check-label text-light">Remember Me</label>
                             </div>
                             <a href="<?= BASEURL; ?>/register" class="align-self-end link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-2">I don't have an account</a>
-                            <?php Flasher::flash();?>
+                            <label class="text-danger mt-1 mb-2"><?php Flasher::flash();?></label>
                             <button type="submit" class="btn btn-outline-warning align-self-start shadow mt-2">Login</button>
 
                         </form>

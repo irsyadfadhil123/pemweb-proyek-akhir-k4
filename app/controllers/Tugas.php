@@ -100,6 +100,20 @@ class Tugas extends Controller {
         echo "<script> window.history.go(-1);</script>";
     }
 
+    public function updateTugas($tugas_id) {
+        $result = $this->model('Tugas_model')->singleFindById($tugas_id);
+        if ($result['admin'] == $_COOKIE['id']) {
+            $data['tugas'] = $result;
+            $data['judul'] = "Update Tugas";
+            $this->view('templates/sessionPages');
+            $this->view('templates/header', $data);
+            $this->view('tugas/updateTugas', $data);
+            $this->view('templates/footer');
+            exit;
+        }
+        echo "<script>alert('Anda tidak memiliki akses untuk memperbarui tugas ini!'); window.history.go(-1);</script>";
+    }
+    
     public function uploadFile($id) {
         $result = $this->model('Tugas_model')->singleFindById($id);
         if ($result['admin'] !== $_COOKIE['id']) {
@@ -186,4 +200,21 @@ class Tugas extends Controller {
         exit;
     }
 
+    public function update() {
+        $data = $this->model('Tugas_model')->findByKode($_POST['kode_tugas']);
+        if (!is_null($data)) {
+            // Lakukan operasi update tugas
+            $success = $this->model('Tugas_model')->update($_POST);
+            if ($success) {
+                header("Location: " . BASEURL . '/tugas/index');
+                exit;
+            } else {
+                echo "<script>alert('Gagal mengupdate tugas'); window.history.go(-1);</script>";
+                exit;
+            }
+        }
+        echo "<script>alert('Tugas tidak ditemukan'); window.history.go(-1);</script>";
+        exit;
+    }
+    
 }
