@@ -17,8 +17,6 @@
                     <Transition name="slide-fade">
                         <h1 v-if="show" class="mt-5 mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Welcome!, [ INSERT NAME HERE ]</h1>
                     </Transition>
-                    
-                    
                         <div class="bg-black bg-opacity-10 p-4 rounded">
                             <Transition name="slide-fade">
                                 <div v-if="show">
@@ -26,12 +24,14 @@
                                     <?php 
                                         if (!empty($data['pengingat'])) {
                                             foreach ($data['pengingat'] as $tugas) {
+                                                if (!($tugas['hari'] < 0)) {
                                     ?>
                                                 <hr>
                                                 <label class="fs-5"><?= $tugas['judul'] ?></label><br>
                                                 <label><?= $tugas['deadline'] ?></label>
-                                                <label><?= $tugas['selisih'] ?></label>
+                                                <label><?= $tugas['jam'] ?></label>
                                     <?php
+                                                }
                                             }
                                         } else {
                                     ?>      
@@ -42,11 +42,17 @@
                                     ?>
                                 </div>
                             </Transition>
+<!-- pagination pengingat -->
+<?php for ( $i = 1; $i <= $data['pagination']['jumlahHalamanTugas']; $i++) : ?>
+    <?php if ($i == $data['pagination']['halamanAktifTugas']) : ?>
+        <a href="<?= BASEURL ?>/home/index/<?= $i ?>" style="font-weight: bold;"><?= $i; ?></a>
+    <?php else : ?>
+        <a href="<?= BASEURL ?>/home/index/<?= $i ?>"><?= $i; ?></a>
+    <?php endif; ?>
+<?php endfor; ?>
+<!-- pagination pengingat -->
+
                         </div>
-
-
-                    
-                    
                 </div>
             </div>
         </div>

@@ -37,4 +37,14 @@ class Kehadiran_model {
 
         return $result;
     }
+
+    public function listWithLimit($data, $pagination) {
+        $query = "SELECT * FROM {$this->table} WHERE tugas_id = ? LIMIT ?, ?";
+        $this->db->query($query);
+        $this->db->bind($data, $pagination['awalListKehadiran'], $pagination['jumlahDataPerHalaman']);
+        $result = $this->db->multi();
+
+        return $result;
+
+    }
 }

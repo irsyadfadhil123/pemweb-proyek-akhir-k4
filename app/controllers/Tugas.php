@@ -8,7 +8,7 @@ class Tugas extends Controller {
         $tugasAdmin = $this->model('Tugas_model')->findByIdAdmin($daftar);
         $data['jumlahNonAdmin'] = count($tugasnonAdmin);
         $data['jumlahAdmin'] = count($tugasAdmin);
-        $pagination = $this->pagination($data);
+        $pagination = $this->paginationTugas($data);
         $data['pagination'] = $pagination;
 
         $listTugasNonAdmin = $this->model('List_model')->findWithLimitNonAdmin($pagination);
@@ -24,8 +24,8 @@ class Tugas extends Controller {
         $this->view('templates/footer');
     }
 
-    public function pagination($data) {
-        $jumlahDataPerHalaman = 3;
+    public function paginationTugas($data) {
+        $jumlahDataPerHalaman = 2;
 
         $jumlahTugasNonAdmin = $data['jumlahNonAdmin'];
         $jumlahHalamanTugasNonAdmin = ceil($jumlahTugasNonAdmin / $jumlahDataPerHalaman);
@@ -113,6 +113,44 @@ class Tugas extends Controller {
         }
         Flasher::setFlash('Anda tidak memiliki akses ke tugas ini!', 'Pemberitahuan', 'warning');
         echo "<script> window.history.go(-1);</script>";
+    }
+
+    public function lihatFile($tugas_id) {
+        $semuaFile = $this->model('File_model')->findByClassId($tugas_id);
+        $jumlahFile = count($semuaFile);
+        $pagination = $this->pagination($jumlahFile);
+        $semuaFile = $this->model('File_model')->findByClassIdWithLimit($tugas_id, $pagination);
+        // var_dump($semuaFile);
+        // exit;
+        $data['tugas_id'] = $tugas_id;
+        $data['pagination'] = $pagination;
+        $data['files'] = $semuaFile;
+        $data['judul'] = "Lihat File";
+        $this->view('templates/sessionPages');
+        $this->view('templates/header', $data);
+        $this->view("tugas/lihatFile", $data);
+        $this->view('templates/footer');
+
+        exit;
+    }
+
+    public function pagination($data) {
+        $jumlahDataPerHalaman = 2;
+
+        $jumlahFile = $data;
+        $jumlahHalamanFile = ceil($jumlahFile / $jumlahDataPerHalaman);
+        $paramFile = explode('/', $_GET['url']);
+        $halamanAktifFile = empty($paramFile[3]) ? 1 : (int)$paramFile[3];
+        $awalFile = ($jumlahDataPerHalaman * $halamanAktifFile) - $jumlahDataPerHalaman;
+
+        $pagination = [
+            'jumlahDataPerHalaman' => $jumlahDataPerHalaman,
+            'jumlahHalamanFile' => $jumlahHalamanFile,
+            'halamanAktifFile' => $halamanAktifFile,
+            'awalFile' => $awalFile,
+        ];
+
+        return $pagination;
     }
 
     public function buat() {

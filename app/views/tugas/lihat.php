@@ -42,6 +42,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
+<a href="<?= BASEURL; ?>/tugas/lihatFile/<?= $data['tugas']['tugas_id'] ?>">lihat Tugas</a>
+
 <form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post">
     <!-- <input type="hidden" name="type" value="admin"> -->
     <label for="pesan">Kirim Pesan</label>

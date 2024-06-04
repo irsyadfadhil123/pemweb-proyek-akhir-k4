@@ -81,52 +81,24 @@ class Tugas_model {
         }
         return $all;
     }
-
-    public function findWithLimitNonAdmin($data, $pagination) {
-        $all = [];
-        // foreach ($data as $daftar) {
-            $query = "SELECT * FROM {$this->table} WHERE admin != ? LIMIT ?, ?";
-            $this->db->query($query);
-            $this->db->bind($_COOKIE['id'], $pagination['awalTugasNonAdmin'], $pagination['jumlahDataPerHalaman']);
-            $result = $this->db->single();
-
-            if (!empty($result)) {
-                $all[] = $result;
-            }
-        // }
-        var_dump($pagination);
-        exit;
-        return $all;
-    }
-
-    public function findWithLimitAdmin($data, $pagination) {
-        $all = [];
-        foreach ($data as $daftar) {
-            $query = "SELECT * FROM {$this->table} WHERE tugas_id = ? AND admin = ? LIMIT ?, ?";
-            $this->db->query($query);
-            $this->db->bind($daftar['tugas_id'], $_COOKIE['id'], $pagination['awalTugasAdmin'], $pagination['jumlahDataPerHalaman']);
-            $result = $this->db->single();
-
-            if (!empty($result)) {
-                $all[] = $result;
-            }
-        }
-        return $all;
-    }
-
-    public function findByTime($data) {
+    public function findByTime($awalTugas = 0, $jumlahDataPerHalaman = 100) {
         $id = $_COOKIE['id'];
-        $all = [];
-        foreach ($data as $pengingat) {
-            $query = "SELECT *, TIMESTAMPDIFF(DAY, NOW(), ?) AS selisih FROM {$this->table} WHERE tugas_id = ? AND TIMESTAMPDIFF(DAY, NOW(), ?) < 7";
-            $this->db->query($query);
-            $this->db->bind($pengingat['deadline'], $pengingat['tugas_id'], $pengingat['deadline']);
-            $result = $this->db->single();
+        $query = "SELECT l.*, t.*, 
+        TIMESTAMPDIFF(DAY, NOW(), t.deadline) AS hari, 
+        TIMESTAMPDIFF(HOUR, NOW(), t.deadline) AS jam, 
+        TIMESTAMPDIFF(MINUTE, NOW(), t.deadline) AS menit
+        FROM list l
+        INNER JOIN tugas t ON l.tugas_id = t.tugas_id
+        WHERE l.user_id = ? 
+        AND t.admin != ? 
+        AND TIMESTAMPDIFF(DAY, NOW(), t.deadline) > 0 
+        AND TIMESTAMPDIFF(DAY, NOW(), t.deadline) <= 7
+        LIMIT ?, ?;
+        ";
+        $this->db->query($query);
+        $this->db->bind($id, $id, $awalTugas, $jumlahDataPerHalaman);
+        $result = $this->db->multi();
 
-            if (!is_null($result) && $id != $pengingat['admin']) {
-                $all[] = $result;
-            }
-        }
-        return $all;
+        return $result;
     }
 }

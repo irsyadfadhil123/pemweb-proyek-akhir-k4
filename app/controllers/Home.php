@@ -3,15 +3,37 @@
 class Home extends Controller {
 
     public function index() {
-        $list = $this->model('List_model')->findById();
-        $tugas = $this->model('Tugas_model')->findById($list);
-        $pengingat = $this->model('Tugas_model')->findByTime($tugas);
+        $list = $this->model('Tugas_model')->findByTime();
+        $jumlahTugas = count($list);
+        $pagination = $this->pagination($jumlahTugas);
+        $pengingat = $this->model('Tugas_model')->findByTime($pagination['awalTugas'], $pagination['jumlahDataPerHalaman']);
+        
+        $data['pagination'] = $pagination;
         $data['pengingat'] = $pengingat;
         $data['judul'] = "Home";
         $this->view('templates/sessionPages');
         $this->view('templates/header', $data);
         $this->view('home/index', $data);
         $this->view('templates/footer');
+    }
+
+    public function pagination($data) {
+        $jumlahDataPerHalaman = 2;
+
+        $jumlahTugas = $data;
+        $jumlahHalamanTugas = ceil($jumlahTugas / $jumlahDataPerHalaman);
+        $paramTugas = explode('/', $_GET['url']);
+        $halamanAktifTugas = empty($paramTugas[2]) ? 1 : (int)$paramTugas[2];
+        $awalTugas = ($jumlahDataPerHalaman * $halamanAktifTugas) - $jumlahDataPerHalaman;
+
+        $pagination = [
+            'jumlahDataPerHalaman' => $jumlahDataPerHalaman,
+            'jumlahHalamanTugas' => $jumlahHalamanTugas,
+            'halamanAktifTugas' => $halamanAktifTugas,
+            'awalTugas' => $awalTugas,
+        ];
+
+        return $pagination;
     }
 
     public function logout() {

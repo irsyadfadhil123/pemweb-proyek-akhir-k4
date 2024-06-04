@@ -54,17 +54,16 @@
             </div>
 
             <h3 class="display-6 fw-semibold mb-3">Tugas yang dibuat</h3>
-
-            <div class="d-flex mb-3">
             <!-- pagination admin -->
 <?php for ( $i = 1; $i <= $data['pagination']['jumlahHalamanTugasAdmin']; $i++) : ?>
     <?php if ($i == $data['pagination']['halamanAktifTugasAdmin']) : ?>
-        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>" style="font-weight: bold;"><?= $i; ?></a>
+        <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>" style="font-weight: bold;"><?= $i; ?></a>
     <?php else : ?>
-        <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>"><?= $i; ?></a>
+        <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>"><?= $i; ?></a>
     <?php endif; ?>
 <?php endfor; ?>
             <!-- pagination admin -->
+            <div class="d-flex mb-3">
             <?php 
             if (!empty($data['hasilTugasAdmin'])) {
                 foreach ($data['hasilTugasAdmin'] as $tugas_dibuat) {
