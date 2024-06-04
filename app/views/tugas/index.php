@@ -56,6 +56,7 @@
                             </div>
                         </Transition>
                     </div>
+
 <!-- pagination nonAdmin -->
 <?php for ( $i = 1; $i <= $data['pagination']['jumlahHalamanTugasNonAdmin']; $i++) : ?>
     <?php if ($i == $data['pagination']['halamanAktifTugasNonAdmin']) : ?>
