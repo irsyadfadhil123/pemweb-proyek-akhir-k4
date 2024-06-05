@@ -8,10 +8,19 @@ class File_model {
         $this->db = new Database;
     }
 
-    public function add($data) {
-        $query = "INSERT INTO {$this->table} (user_id, tugas_id, nama_file) VALUES (?, ?, ?)";
+    public function add($data, $catatan) {
+        $query = "INSERT INTO {$this->table} (user_id, tugas_id, nama_file, catatan) VALUES (?, ?, ?, ?)";
         $this->db->query($query);
-        $this->db->bind($_COOKIE['id'], $data['tugas_id'], $data['nama']);
+        $this->db->bind($_COOKIE['id'], $data['tugas_id'], $data['nama'], $catatan);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function update($data, $catatan) {
+        $query = "UPDATE {$this->table} SET nama_file = ?, catatan = ? WHERE user_id = ? AND tugas_id = ?";
+        $this->db->query($query);
+        $this->db->bind($data['nama'], $catatan, $_COOKIE['id'], $data['tugas_id']);
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -22,6 +31,15 @@ class File_model {
         $this->db->query($query);
         $this->db->bind($data);
         $result = $this->db->multi();
+
+        return $result;
+    }
+
+    public function findByClassAndUserId($data) {
+        $query = "SELECT * FROM {$this->table} WHERE tugas_id = ? AND user_id = ?";
+        $this->db->query($query);
+        $this->db->bind($data, $_COOKIE['id']);
+        $result = $this->db->single();
 
         return $result;
     }

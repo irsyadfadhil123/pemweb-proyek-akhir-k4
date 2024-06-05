@@ -25,21 +25,35 @@
                                 <?php 
                                 if (!empty($data['pengingat'])) {
                                     foreach ($data['pengingat'] as $tugas) {
-                                        if (!($tugas['hari'] < 0)) {
-                        ?>
-                                <hr>
-                                <label class="fs-5"><?= $tugas['judul'] ?></label><br>
-                                <label><?= $tugas['deadline'] ?></label>
-                                <label><?= $tugas['jam'] ?></label>
-                <?php
+                                        if (!($tugas['hari'] < 1)) {
+                                ?>
+                                            <hr>
+                                            <label class="fs-5"><?= $tugas['judul'] ?></label><br>
+                                            <label>Deadline: <?= $tugas['deadline'] ?></label><br>
+                                            <label>Tersisa <?= $tugas['hari'] ?> hari lagi</label>
+                                <?php
+                                        } else if (!($tugas['jam'] < 1)) {
+                                ?>
+                                            <hr>
+                                            <label class="fs-5"><?= $tugas['judul'] ?></label><br>
+                                            <label>Deadline: <?= $tugas['deadline'] ?></label><br>
+                                            <label>Tersisa <?= $tugas['jam'] ?> jam lagi</label>
+                                <?php
+                                        } else {
+                                ?>
+                                            <hr>
+                                            <label class="fs-5"><?= $tugas['judul'] ?></label><br>
+                                            <label>Deadline: <?= $tugas['deadline'] ?></label><br>
+                                            <label>Tersisa <?= $tugas['menit'] ?> menit lagi</label>
+                                <?php
                                         }
-                                        }
-                                    } else {
+                                    }
+                                } else {
                                 ?>      
                                     <hr>
                                     <label style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">You have no assignment right now</label>
                                 <?php
-                                    }
+                                }
                                 ?>
                             </div>
                         </Transition>

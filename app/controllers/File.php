@@ -4,15 +4,16 @@ class File extends Controller {
 
     public function tambah($id) {
         $file = $_FILES['file'];
+        $catatan = $_POST['catatan'];
         $verifikasi = $this->verifikasiFile($file);
         if ($verifikasi['choose']) {
             if ($verifikasi['ekstensi']) {
                 if ($verifikasi['ukuran']) {
                     $data['nama'] = $verifikasi['namaFile'];
                     $data['tugas_id'] = $id;
-                    if ($this->model('File_model')->add($data) > 0) {
+                    if ($this->model('File_model')->add($data, $catatan) > 0) {
                         Flasher::setFlash('Berhasil Upload File', 'Pemberitahuan', 'success');
-                        echo "<script>alert('Berhasil Upload File');window.history.go(-1);</script>";
+                        echo "<script>window.history.go(-2);</script>";
                         exit;
                     } 
                     Flasher::setFlash('Gagal Upload File', 'Pemberitahuan', 'danger');
@@ -23,12 +24,25 @@ class File extends Controller {
                 echo "<script>window.history.go(-1);</script>";            
                 exit;
             }
-        Flasher::setFlash('Gagal Upload File, Ekstensi File salah', 'Pemberitahuan', 'danger');
-        echo "<script>window.history.go(-1);</script>";
-        exit;
+            Flasher::setFlash('Gagal Upload File, Ekstensi File salah', 'Pemberitahuan', 'danger');
+            echo "<script>window.history.go(-1);</script>";
+            exit;
         }
-    Flasher::setFlash('Gagal Upload File, Tidak memilih File', 'Pemberitahuan', 'danger');
-    echo "<script>window.history.go(-1);</script>";
+        if (isset($_POST['type'])) {
+            $data['tugas_id'] = $id;
+            $file = $this->model('File_model')->findByClassAndUserId($data['tugas_id']);
+            $data['nama'] = $file['nama_file'];
+            if ($this->model('File_model')->update($data, $catatan) > 0) {
+                Flasher::setFlash('Berhasil Update File', 'Pemberitahuan', 'success');
+                echo "<script>window.history.go(-1);</script>";
+                exit;
+            }
+            Flasher::setFlash('Gagal Update File', 'Pemberitahuan', 'danger');
+            echo "<script>window.history.go(-1);</script>";
+            exit;
+        }
+        Flasher::setFlash('Gagal Upload File, Tidak memilih File', 'Pemberitahuan', 'danger');
+        echo "<script>window.history.go(-1);</script>";
     }
 
     public function verifikasiFile($data) {

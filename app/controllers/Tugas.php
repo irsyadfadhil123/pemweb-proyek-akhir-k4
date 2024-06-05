@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 class Tugas extends Controller {
 
     public function index() {
@@ -69,7 +72,9 @@ class Tugas extends Controller {
     public function upload($id) {
         $result = $this->model('Tugas_model')->singleFindById($id);
         if ($result['admin'] !== $_COOKIE['id']) {
+            $file = $this->model('File_model')->findByClassAndUserId($id);
             $diskusi = $this->model('Diskusi_model')->findByTugasId($id);
+            is_null($file) ? $data['type'] = "Upload Tugas" : $data['type'] = "Edit Tugas";
             $data['diskusi'] = $diskusi;
             $data['tugas'] = $result;
             $data['judul'] = "Upload Tugas";
@@ -115,18 +120,47 @@ class Tugas extends Controller {
     }
     
     public function uploadFile($id) {
-        $result = $this->model('Tugas_model')->singleFindById($id);
-        if ($result['admin'] !== $_COOKIE['id']) {
-            $data['tugas'] = $result;
-            $data['judul'] = "Lihat Tugas";
-            $this->view('templates/sessionPages');
-            $this->view('templates/header', $data);
-            $this->view("tugas/uploadFile", $data);
-            $this->view('templates/footer');
+        $type = $this->model('File_model')->findByClassAndUserId($id);
+        if (empty($type)) {
+            $result = $this->model('Tugas_model')->singleFindById($id);
+            if ($result['admin'] !== $_COOKIE['id']) {
+                if (!($result['detik'] <= 0)) {
+                    $data['tugas'] = $result;
+                    $data['judul'] = "Upload Tugas";
+                    $this->view('templates/sessionPages');
+                    $this->view('templates/header', $data);
+                    $this->view("tugas/uploadFile", $data);
+                    $this->view('templates/footer');
+                    exit;    
+                }
+                Flasher::setFlash('Tugas sudah mencapai Deadline!', 'Pemberitahuan', 'warning');
+                echo "<script> window.history.go(-1);</script>";
+                exit;
+            }
+            Flasher::setFlash('Anda tidak memiliki akses ke tugas ini!', 'Pemberitahuan', 'warning');
+            echo "<script> window.history.go(-1);</script>";
+            exit;
+        } else {
+            $result = $this->model('Tugas_model')->singleFindById($id);
+            if ($result['admin'] !== $_COOKIE['id']) {
+                if (!($result['detik'] <= 0)) {
+                    $data['type'] = $type;
+                    $data['tugas'] = $result;
+                    $data['judul'] = "Edit File Tugas";
+                    $this->view('templates/sessionPages');
+                    $this->view('templates/header', $data);
+                    $this->view("tugas/editFile", $data);
+                    $this->view('templates/footer');
+                    exit;
+                }
+                Flasher::setFlash('Tugas sudah mencapai Deadline!', 'Pemberitahuan', 'warning');
+                echo "<script> window.history.go(-1);</script>";
+                exit;  
+            }
+            Flasher::setFlash('Anda tidak memiliki akses ke tugas ini!', 'Pemberitahuan', 'warning');
+            echo "<script> window.history.go(-1);</script>";
             exit;
         }
-        Flasher::setFlash('Anda tidak memiliki akses ke tugas ini!', 'Pemberitahuan', 'warning');
-        echo "<script> window.history.go(-1);</script>";
     }
 
     public function lihatFile($tugas_id) {
@@ -134,8 +168,6 @@ class Tugas extends Controller {
         $jumlahFile = count($semuaFile);
         $pagination = $this->pagination($jumlahFile);
         $semuaFile = $this->model('File_model')->findByClassIdWithLimit($tugas_id, $pagination);
-        // var_dump($semuaFile);
-        // exit;
         $data['tugas_id'] = $tugas_id;
         $data['pagination'] = $pagination;
         $data['files'] = $semuaFile;

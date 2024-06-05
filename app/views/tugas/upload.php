@@ -28,7 +28,7 @@
             </div>
             <div class="d-flex align-self-end mb-3">
                 <a href="<?= BASEURL?>/kehadiran/kehadiran/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info me-3">Catat Kehadiran</a>
-                <a href="<?= BASEURL?>/tugas/uploadFile/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info">Upload File</a>
+                <a href="<?= BASEURL?>/tugas/uploadFile/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info"><?= $data['type'] ?></a>
             </div>
             <div class="d-flex flex-column bg-dark-subtle rounded align-self-start p-3 mb-3">
                 <label class="lead fw-medium">Deadline</label>

@@ -42,7 +42,9 @@ class Tugas_model {
     }
 
     public function singleFindById($data) {
-        $query = "SELECT * FROM {$this->table} WHERE tugas_id = ?";
+        $query = "SELECT *,  TIMESTAMPDIFF(SECOND, NOW(), t.deadline) AS detik
+        FROM {$this->table} t WHERE tugas_id = ?
+        ";
         $this->db->query($query);
         $this->db->bind($data);
         $result = $this->db->single();
