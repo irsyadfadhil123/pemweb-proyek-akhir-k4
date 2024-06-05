@@ -2,7 +2,7 @@
 <form action="<?= BASEURL;?>/file/tambah/<?= $data['tugas']['tugas_id'] ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="type" value="edit">
     <input type="file" name="file" id="">
-    <a href="<?= BASEURL ?>/files/<?= $data['type']['nama_file'] ?>">Lihat File</a>
+    <a href="<?= BASEURL ?>/files/<?= $data['type']['nama_file'] ?>" target="_blank" rel="noopener noreferrer" >Lihat File</a>
     <label for="catatan">Catatan: </label>
     <input type="text" name="catatan" value="<?= isset($data['type']['catatan']) ? $data['type']['catatan'] : "" ?>">
     <button type="submit">Upload File</button>

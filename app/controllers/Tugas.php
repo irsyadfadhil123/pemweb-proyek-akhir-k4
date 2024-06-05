@@ -42,13 +42,15 @@ class Tugas extends Controller {
         $halamanAktifTugasAdmin = empty($paramTugasAdmin[3]) ? 1 : (int)$paramTugasAdmin[3];
         $awalTugasAdmin = ($jumlahDataPerHalaman * $halamanAktifTugasAdmin) - $jumlahDataPerHalaman;
 
-        $pagination['jumlahDataPerHalaman'] = $jumlahDataPerHalaman;
-        $pagination['jumlahHalamanTugasNonAdmin'] = $jumlahHalamanTugasNonAdmin;
-        $pagination['jumlahHalamanTugasAdmin'] = $jumlahHalamanTugasAdmin;
-        $pagination['halamanAktifTugasNonAdmin'] = $halamanAktifTugasNonAdmin;
-        $pagination['halamanAktifTugasAdmin'] = $halamanAktifTugasAdmin;
-        $pagination['awalTugasNonAdmin'] = $awalTugasNonAdmin;
-        $pagination['awalTugasAdmin'] = $awalTugasAdmin;
+        $pagination = [
+            'jumlahDataPerHalaman' => $jumlahDataPerHalaman,
+            'jumlahHalamanTugasNonAdmin' => $jumlahHalamanTugasNonAdmin,
+            'jumlahHalamanTugasAdmin' => $jumlahHalamanTugasAdmin,
+            'halamanAktifTugasNonAdmin' => $halamanAktifTugasNonAdmin,
+            'halamanAktifTugasAdmin' => $halamanAktifTugasAdmin,
+            'awalTugasNonAdmin' => $awalTugasNonAdmin,
+            'awalTugasAdmin' => $awalTugasAdmin,
+        ];
 
         return $pagination;
     }
