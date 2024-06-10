@@ -3,25 +3,25 @@
 
                 <div class="d-flex bg-dark z-1" style="box-shadow: 0px 10px 30px rgb(25, 25, 25); position: relative;">
                     <a href="<?= BASEURL; ?>/home/logout" class="p-3 btn btn-warning rounded-0 me-auto">
-                        &larr; Logout
+                        &larr; Keluar
                     </a>
                     <a href="<?= BASEURL; ?>/tugas/index" class="p-3 btn btn-warning rounded-0">
-                        Classes
+                        Kelas
                     </a>
                     <a href="<?= BASEURL; ?>/home/profil" class="p-3 btn btn-warning rounded-0">
-                        Profile
+                        Profil
                     </a>
                 </div>
 
                 <div class="bg-dark text-light p-4" style="min-height: 100vh; position: relative;">
                     <Transition name="slide-fade">
-                        <h1 v-if="show" class="mt-5 mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Welcome!, [ INSERT NAME HERE ]</h1>
+                        <h1 v-if="show" class="mt-5 mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Selamat Datang, [INSERT NAME HERE]</h1>
                     </Transition>
                     
                     <div class="bg-black bg-opacity-10 p-4 rounded">
                         <Transition name="slide-fade">
                             <div v-if="show">
-                                <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Reminder</h2>
+                                <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Pengingat</h2>
                                 <?php 
                                 if (!empty($data['pengingat'])) {
                                     foreach ($data['pengingat'] as $tugas) {
@@ -51,7 +51,7 @@
                                 } else {
                                 ?>      
                                     <hr>
-                                    <label style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">You have no assignment right now</label>
+                                    <label style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Anda tidak memiliki tugas saat ini</label>
                                 <?php
                                 }
                                 ?>

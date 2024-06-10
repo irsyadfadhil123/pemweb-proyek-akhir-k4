@@ -3,16 +3,16 @@
                 <div class="d-flex justify-content-center align-items-center bg-dark flex-fill" style="height: 100vh;">
                     <Transition name="slide-fade">
                         <form v-if="show" action="<?= BASEURL; ?>/login/verifikasi" method="post" class="d-flex flex-column border border-secondary-subtle p-4 shadow">
-                            <p class="text-light fs-1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Login</p>
+                            <p class="text-light fs-1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Masuk</p>
                             <input type="text" name="username" placeholder="Username" class="form-control mb-2 shadow" required>
                             <input type="password" name="password" placeholder="Password" class="form-control mb-2 shadow" required>
                             <div class="form-check mb-2">
                                 <input type="checkbox" name="remember" class="form-check-input">
-                                <label for="remember" class="form-check-label text-light">Remember Me</label>
+                                <label for="remember" class="form-check-label text-light">Ingat Saya</label>
                             </div>
-                            <a href="<?= BASEURL; ?>/register" class="align-self-end link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-2">I don't have an account</a>
+                            <a href="<?= BASEURL; ?>/register" class="align-self-end link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover mb-2">Buat Akun</a>
                             <label class="text-danger mt-1 mb-2"><?php Flasher::flash();?></label>
-                            <button type="submit" class="btn btn-outline-warning align-self-start shadow mt-2">Login</button>
+                            <button type="submit" class="btn btn-outline-warning align-self-start shadow mt-2">Masuk</button>
 
                         </form>
                     </Transition>
