@@ -1,10 +1,10 @@
         <div id="app">
             <div class="d-flex">
-                <div class="flex-fill d-flex align-items-center justify-content-center">
+                <div class="flex-fill d-flex align-items-center justify-content-center" style="width: 35vw;">
                     <Transition name="slide-fade-quotes">
                         <figure v-if="show" class="text-end">
                             <blockquote class="blockquote">
-                                <p>Anyone who has never made a mistake has never tried anything new.</p>
+                                <p>Seseorang yang tidak pernah melakukan kesalahan berarti tidak pernah mencoba hal baru.</p>
                             </blockquote>
                             <figcaption class="blockquote-footer">
                                 <label>Albert Einstein</label>

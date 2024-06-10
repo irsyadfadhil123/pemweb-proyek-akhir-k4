@@ -2,7 +2,7 @@
     <div style="position: relative;">
         <div class="d-flex bg-dark z-1" style="box-shadow: 0px 10px 30px rgb(25, 25, 25); position: relative;">
             <a href="<?= BASEURL;?>/home/index" class="p-3 btn btn-warning rounded-0 me-auto">
-                &larr; Home
+                &larr; Halaman Utama
             </a>
             <a href="<?= BASEURL; ?>/home/profil" class="p-3 btn btn-warning rounded-0">
                 Profil
@@ -36,7 +36,7 @@
                                         </div>
                                         <div class="d-flex bg-warning p-3 pt-2 pb-2 justify-content-between">
                                             <label class="align-self-center text-dark"><?= $tugas_tergabung['deadline']; ?></label>
-                                            <a href="<?= BASEURL;?>/tugas/upload/<?= $tugas_tergabung['tugas_id'];?>" class="btn btn-secondary">Upload</a>
+                                            <a href="<?= BASEURL;?>/tugas/upload/<?= $tugas_tergabung['tugas_id'];?>" class="btn btn-secondary">Unggah</a>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
@@ -75,7 +75,7 @@
                                         </div>
                                         <div class="d-flex bg-warning p-3 pt-2 pb-2 justify-content-between">
                                             <label class="align-self-center text-dark"><?= $tugas_dibuat['deadline']; ?></label>
-                                            <a href="<?= BASEURL;?>/tugas/lihat/<?= $tugas_dibuat['tugas_id'];?>" class="btn btn-secondary">Check</a>
+                                            <a href="<?= BASEURL;?>/tugas/lihat/<?= $tugas_dibuat['tugas_id'];?>" class="btn btn-secondary">Lihat</a>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
