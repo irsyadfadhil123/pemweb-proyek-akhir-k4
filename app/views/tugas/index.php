@@ -5,26 +5,26 @@
                 &larr; Home
             </a>
             <a href="<?= BASEURL; ?>/home/profil" class="p-3 btn btn-warning rounded-0">
-                Profile
+                Profil
             </a>
         </div>
 
         <div class="bg-dark text-light p-4" style="min-height: 100vh; position: relative;">
             <transition name="slide-fade">
-                <h1 v-if="show" class="mt-5 mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Classes</h1>
+                <h1 v-if="show" class="mt-5 mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Kelas</h1>
             </transition>
 
             <transition name="slide-fade">
                 <div v-if="show" class="mb-4">
-                    <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3">Add Assignment</a>
-                    <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info">Create Assignment</a>
+                    <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3">Tambah Tugas</a>
+                    <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info">Buat Tugas</a>
                 </div>
             </transition>
             
             <div class="bg-black bg-opacity-10 p-4 rounded mb-5">
                 <transition name="slide-fade">
                     <div v-if="show">
-                        <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Added Assignment</h2>
+                        <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Tugas yang Ditambahkan</h2>
                         <?php if (!empty($data['hasilTugasNonAdmin'])): ?>
                             <div class='d-flex mb-3 overflow-scroll'>
                                 <?php foreach ($data['hasilTugasNonAdmin'] as $tugas_tergabung): ?>
@@ -43,7 +43,7 @@
                             </div>
                         <?php else: ?>
                             <hr>
-                            <label>Assignment Data is Unavailable</label>
+                            <label>Data tidak Tersedia</label>
                         <?php endif; ?>                                    
 
                     </div>
@@ -63,7 +63,7 @@
             <div class="bg-black bg-opacity-10 p-4 rounded">
                 <transition name="slide-fade">
                     <div v-if="show">
-                        <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Created Assignment</h2>
+                        <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Tugas yang Dibuat</h2>
                         <?php if (!empty($data['hasilTugasAdmin'])): ?>
                             <div class='d-flex mb-3 overflow-scroll'>
                                 <?php foreach ($data['hasilTugasAdmin'] as $tugas_dibuat): ?>
@@ -82,7 +82,7 @@
                             </div>
                         <?php else: ?>
                             <hr>
-                            <label>Assignment Data is Unavailable</label>
+                            <label>Data tidak Tersedia</label>
                         <?php endif; ?>
                     </div>
                 </transition>
