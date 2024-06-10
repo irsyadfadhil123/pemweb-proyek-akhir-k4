@@ -17,11 +17,11 @@
                         </form>
                     </Transition>
                 </div>
-                <div class="flex-fill d-flex align-items-center justify-content-center">
+                <div class="flex-fill d-flex align-items-center justify-content-center" style="width: 35vw;">
                     <Transition name="slide-fade-quotes">
                         <figure v-if="show" class="text-end">
                             <blockquote class="blockquote">
-                                <p>Educating the mind without educating the heart is no education at all.</p>
+                                <p>Mendidik pikiran tanpa mendidik hati bukanlah sebuah pendidikan.</p>
                             </blockquote>
                             <figcaption class="blockquote-footer">
                                 <label>Aristotle</label>
