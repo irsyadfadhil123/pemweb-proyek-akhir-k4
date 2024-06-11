@@ -1,13 +1,15 @@
 <div id="app">
     <div style="position: relative;">
-        <div class="d-flex bg-dark z-1" style="box-shadow: 0px 10px 30px rgb(25, 25, 25); position: relative;">
-            <a href="<?= BASEURL;?>/home/index" class="p-3 btn btn-warning rounded-0 me-auto">
-                &larr; Halaman Utama
-            </a>
-            <a href="<?= BASEURL; ?>/home/profil" class="p-3 btn btn-warning rounded-0">
-                Profil
-            </a>
-        </div>
+        <nav class="navbar navbar-dark bg-dark navbar-custom">
+            <div class="container-fluid">
+                <a href="<?= BASEURL;?>/home/index" class="btn btn-warning rounded-0 me-auto">
+                    &larr; Halaman Utama
+                </a>
+                <a href="<?= BASEURL; ?>/home/profil" class="btn btn-warning rounded-0 mx-2">
+                    Profil
+                </a>
+            </div>
+        </nav>
 
         <div class="bg-dark text-light p-4" style="min-height: 100vh; position: relative;">
             <transition name="slide-fade">
@@ -16,8 +18,8 @@
 
             <transition name="slide-fade">
                 <div v-if="show" class="mb-4">
-                    <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3">Tambah Tugas</a>
-                    <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info">Buat Tugas</a>
+                    <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3 custom-btn">Tambah Tugas</a>
+                    <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info custom-btn">Buat Tugas</a>
                 </div>
             </transition>
             
@@ -115,21 +117,6 @@
     </div>
 </div>
 
-<script>
-    const app = Vue.createApp({
-        data() {
-            return {
-                show: false,
-            };
-        },
-        mounted() {
-            this.show = true;
-        }
-    });
-
-    app.mount("#app");
-</script>
-
 <style>
     .slide-fade-enter-active {
         transition: all 0.3s ease-out;
@@ -161,4 +148,28 @@
     .overflow-scroll {
         overflow: auto;
     }
+
+    .custom-btn {
+    border-radius: 10px; /* Rounded corners */
+    margin: 0 3px; /* Narrow margin */
+    padding: 3px 10px; /* Smaller padding for thinner appearance */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+    font-size: 14px; /* Smaller font size */
+    min-width: auto; /* Ensure button width adjusts to content */
+    }
 </style>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                show: false,
+            };
+        },
+        mounted() {
+            this.show = true;
+        }
+    });
+
+    app.mount("#app");
+</script>
