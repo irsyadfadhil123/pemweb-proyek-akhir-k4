@@ -1,4 +1,4 @@
-        <div id="app">
+<div id="app">
             <div class="d-flex">
                 <div class="d-flex justify-content-center align-items-center bg-dark flex-fill" style="height: 100vh;">
                     <Transition name="slide-fade">
@@ -32,46 +32,72 @@
             </div>
         </div>
 
-        <script>
-            const app = Vue.createApp({
-                data() {return {
-                    show: false,
-                }},
+<style>
+        .slide-fade-enter-active {
+            transition: all 0.3s ease-out;
+        }
 
-                mounted() {
-                    this.show = true;
-                }   
-            });
+        .slide-fade-leave-active {
+            transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+        }
 
-            app.mount("#app");
-        </script>
+        .slide-fade-enter-from,
+        .slide-fade-leave-to {
+            transform: translateX(30px);
+            opacity: 0;
+        }
 
-        <style>
-            .slide-fade-enter-active {
-              transition: all 0.3s ease-out;
-            }
+        .slide-fade-quotes-enter-active {
+            transition: all 0.3s ease-out;
+        }
 
-            .slide-fade-leave-active {
-              transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-            }
+        .slide-fade-quotes-leave-active {
+            transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+        }
 
-            .slide-fade-enter-from,
-            .slide-fade-leave-to {
-              transform: translateX(30px);
-              opacity: 0;
-            }
+        .slide-fade-quotes-enter-from,
+        .slide-fade-quotes-leave-to {
+            transform: translateX(-30px);
+            opacity: 0;
+        }
 
-            .slide-fade-quotes-enter-active {
-              transition: all 0.3s ease-out;
-            }
+        .content {
+            min-height: 100vh;
+        }
 
-            .slide-fade-quotes-leave-active {
-              transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-            }
+        .form-login {
+            max-width: 400px;
+            margin: auto;
+        }
 
-            .slide-fade-quotes-enter-from,
-            .slide-fade-quotes-leave-to {
-              transform: translateX(-30px);
-              opacity: 0;
-            }
-        </style>
+        .blockquote {
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        .blockquote-footer {
+            font-size: 1.1rem;
+        }
+
+        .background-section {
+            background: url('fotobelajar.jpg') no-repeat center center;
+            background-size: cover;
+        }
+    </style>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                show: false,
+            };
+        },
+        mounted() {
+            this.show = true;
+        }
+    });
+
+    app.mount("#app");
+</script>
