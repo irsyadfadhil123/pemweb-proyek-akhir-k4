@@ -26,7 +26,7 @@
   - Pengumpul Tugas
   - Mengirimkan pemberitahuan kepada Pengumpul Tugas tentang tugas yang akan segera berakhir, membantu mereka untuk tetap teratur dan tidak melewatkan batas waktu.
 
-- [ ] **7. Unggah Berkas**
+- [x] **7. Unggah Berkas**
   - Pengumpul Tugas
   - Memungkinkan Pengumpul Tugas untuk mengunggah berkas tugas dalam berbagai format seperti dokumen, gambar, atau video, untuk kemudahan pengumpulan tugas.
 

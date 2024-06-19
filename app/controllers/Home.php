@@ -18,7 +18,7 @@ class Home extends Controller {
     }
 
     public function pagination($data) {
-        $jumlahDataPerHalaman = 4;
+        $jumlahDataPerHalaman = 1;
 
         $jumlahTugas = $data;
         $jumlahHalamanTugas = ceil($jumlahTugas / $jumlahDataPerHalaman);
@@ -58,7 +58,7 @@ class Home extends Controller {
         $this->view('templates/footer');
     }
 
-    public function editProfil() {        
+    public function editProfil() {
         if (password_verify($_POST['oldPassword'], $_POST['password'])) {
             $data = $_FILES['gambar'];
             $verifikasi = $this->verifikasiGambar($data);
@@ -67,7 +67,7 @@ class Home extends Controller {
                     $user = $this->model('User_model')->findById();
                     $verifikasi['kosong'] ? $_POST['gambar'] = $user['gambar'] : $_POST['gambar'] = $verifikasi['namaGambar'];
                     if (!empty($_POST['newPassword'])) {
-                        if ($_POST['newPassword'] === $_POST['confirmPasword']) {
+                        if ($_POST['newPassword'] === $_POST['confirmPassword']) {
                             $_POST['newPassword'] = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
                             $this->model('User_model')->update($_POST);
                             Flasher::setFlash('Sukses mengedit Profil', 'Pemberitahuan', 'success');

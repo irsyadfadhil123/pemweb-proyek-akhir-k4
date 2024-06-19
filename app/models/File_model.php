@@ -55,6 +55,5 @@ class File_model {
         $result = $this->db->multi();
 
         return $result;
-
     }
 }
