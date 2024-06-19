@@ -1,3 +1,49 @@
+<div class="bg-dark">
+  <div id="content" style="opacity: 0;">
+
+    <div class="d-flex shadow" style="position: relative;">
+      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">Halaman Utama</a>
+      <a id="profil" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Profil</a>
+    </div>
+
+    <div class="d-flex flex-column text-white p-5" style="min-height: 100vh;">
+        <span class="fs-1">Kelas</span>
+        <div class="mt-5">
+            <a class="btn btn-outline-success">Tambah Tugas</a>
+            <a class="btn btn-outline-info">Buat Tugas</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#content").fadeTo(500, 1);
+
+  $("#home").on("click", function() {
+    $("#content").fadeTo(500, 0, function() {
+      $(location).prop("href", "<?= BASEURL; ?>/home/index");
+    });
+  });
+
+  $("#profil").on("click", function() {
+    $("#content").fadeTo(500, 0, function() {
+      $(location).prop("href", "<?= BASEURL; ?>/home/profil");
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------------------------------------------------------------------------------------------- -->
+
 <div id="app">
     <div style="position: relative;">
         <nav class="navbar navbar-dark bg-dark navbar-custom">
