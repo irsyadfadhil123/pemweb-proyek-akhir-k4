@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `pengumpul_tugas_test`
 --
+CREATE DATABASE IF NOT EXISTS pengumpul_tugas_test;
 
 -- --------------------------------------------------------
 
