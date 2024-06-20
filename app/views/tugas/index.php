@@ -2,8 +2,9 @@
   <div id="content" style="opacity: 0;">
 
     <div class="d-flex shadow" style="position: relative;">
-      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">&larr; Halaman Utama</a>
+      <a id="back" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">&larr; Kembali</a>
       <a id="profil" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Profil</a>
+      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Halaman Utama</a>
     </div>
 
     <div class="d-flex flex-column text-white p-5" style="min-height: 100vh;">
@@ -99,10 +100,14 @@
   </div>
 </div>
 
-
-
 <script>
   $("#content").fadeTo(500, 1);
+
+  $("#back").on("click", function() {
+    $("#content").fadeTo(500, 0, function() {
+      $(location).prop("href", history.back());
+    });
+  });
 
   $("#home").on("click", function() {
     $("#content").fadeTo(500, 0, function() {

@@ -113,5 +113,4 @@
       $(location).prop("href", "<?= BASEURL; ?>/home/profil");
     });
   });
-
 </script>
