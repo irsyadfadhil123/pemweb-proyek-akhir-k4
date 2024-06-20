@@ -15,18 +15,18 @@
           <span class="lead fs-1 text-info">Profil</span>
 
           <div class="input-group mb-2 mt-2">
-            <label class="form-control bg-dark text-light" style="cursor: pointer; width: 30%;" for="file-upload">Browse File</label>
-            <input  type="file" style="display: none;" onchange="displayFileName()" name="gambar" id="file-upload">
-            <span class="form-control bg-dark text-secondary" style="width: 70%;" id="file-name">File Name</span>
+            <label class="form-control bg-dark text-light" style="cursor: pointer; width: 20%;" for="file-upload">Browse File</label>
+            <input type="file" style="display: none;" onchange="displayFileName()" name="gambar" id="file-upload">
+            <span class="form-control bg-dark text-secondary" style="width: 80%;" id="file-name">File Name</span>
           </div>
 
           <div class="input-group mb-2">
-            <span class="input-group-text bg-dark text-light" style="width: 30%;">Username</span>
-            <input class="form-control bg-dark text-light" style="width: 70%;" type="text" name="username" value="<?= $data['profil']['username'] ?>" required>
+            <span class="input-group-text bg-dark text-light" style="width: 20%;">Username</span>
+            <input class="form-control bg-dark text-light" style="width: 80%;" type="text" name="username" value="<?= $data['profil']['username'] ?>" required>
           </div>
           <div class="input-group mb-2">
-          <span class="input-group-text bg-dark text-light" style="width: 30%;">Nama</span>
-            <input class="form-control bg-dark text-light" style="width: 70%;" type="text" name="nama" value="<?= $data['profil']['nama'] ?>" required>
+          <span class="input-group-text bg-dark text-light" style="width: 20%;">Nama</span>
+            <input class="form-control bg-dark text-light" style="width: 80%;" type="text" name="nama" value="<?= $data['profil']['nama'] ?>" required>
           </div>
         </div>
 
