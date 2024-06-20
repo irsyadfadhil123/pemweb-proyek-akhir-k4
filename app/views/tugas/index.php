@@ -2,17 +2,16 @@
   <div id="content" style="opacity: 0;">
 
     <div class="d-flex shadow" style="position: relative;">
-      <a id="back" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">&larr; Kembali</a>
+      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">Halaman Utama</a>
       <a id="profil" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Profil</a>
-      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Halaman Utama</a>
     </div>
 
     <div class="d-flex flex-column text-white p-5" style="min-height: 100vh;">
       <span class="fs-1">Kelas</span>
 
       <div class="d-flex mt-5">
-          <a class="btn btn-outline-success me-2" href="<?= BASEURL;?>/tugas/tambahTugas">Tambah Tugas</a>
-          <a class="btn btn-outline-info" href="<?= BASEURL;?>/tugas/buatTugas">Buat Tugas</a>
+          <a id="tambahTugas" class="btn btn-outline-success me-2">Tambah Tugas</a>
+          <a id="buatTugas" class="btn btn-outline-info">Buat Tugas</a>
       </div>
 
       <div class="d-flex flex-column border border-secondary p-4 rounded-2 mt-5">
@@ -90,24 +89,24 @@
     </div>
 
     <?php if (isset($_SESSION["flash"])) { ?>
-      <div class="toast align-items-center text-bg-success border-0 show bottom-0 end-0 m-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php if ($_SESSION["flash"]["tipe"] == "warning") { ?>
+        <div class="toast align-items-center text-bg-danger border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } else { ?>
+        <div class="toast align-items-center text-bg-success border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } ?>
+      
         <div class="d-flex">
           <span class="toast-body"><?php Flasher::flash(); ?></span>
           <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
       </div>
     <?php } ?>
+    
   </div>
 </div>
 
 <script>
   $("#content").fadeTo(500, 1);
-
-  $("#back").on("click", function() {
-    $("#content").fadeTo(500, 0, function() {
-      $(location).prop("href", history.back());
-    });
-  });
 
   $("#home").on("click", function() {
     $("#content").fadeTo(500, 0, function() {
@@ -118,6 +117,18 @@
   $("#profil").on("click", function() {
     $("#content").fadeTo(500, 0, function() {
       $(location).prop("href", "<?= BASEURL; ?>/home/profil");
+    });
+  });
+
+  $("#tambahTugas").on("click", function() {
+    $("#content").fadeTo(500, 0, function() {
+      $(location).prop("href", "<?= BASEURL;?>/tugas/tambahTugas");
+    });
+  });
+
+  $("#buatTugas").on("click", function() {
+    $("#content").fadeTo(500, 0, function() {
+      $(location).prop("href", "<?= BASEURL;?>/tugas/buatTugas");
     });
   });
 </script>

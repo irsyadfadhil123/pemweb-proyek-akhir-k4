@@ -17,16 +17,16 @@
           <div class="input-group mb-2 mt-2">
             <label class="form-control bg-dark text-light" style="cursor: pointer; width: 20%;" for="file-upload">Browse File</label>
             <input type="file" style="display: none;" onchange="displayFileName()" name="gambar" id="file-upload">
-            <span class="form-control bg-dark text-secondary" style="width: 80%;" id="file-name">File Name</span>
+            <span class="form-control bg-dark" style="width: 80%; color: grey;" id="file-name">File Name</span>
           </div>
 
           <div class="input-group mb-2">
             <span class="input-group-text bg-dark text-light" style="width: 20%;">Username</span>
-            <input class="form-control bg-dark text-light" style="width: 80%;" type="text" name="username" value="<?= $data['profil']['username'] ?>" required>
+            <input class="form-control bg-dark text-light" style="width: 80%;" type="text" name="username" value="<?= $data['profil']['username'] ?>" placeholder="Masukkan Username" required>
           </div>
           <div class="input-group mb-2">
           <span class="input-group-text bg-dark text-light" style="width: 20%;">Nama</span>
-            <input class="form-control bg-dark text-light" style="width: 80%;" type="text" name="nama" value="<?= $data['profil']['nama'] ?>" required>
+            <input class="form-control bg-dark text-light" style="width: 80%;" type="text" name="nama" value="<?= $data['profil']['nama'] ?>" placeholder="Masukkan Nama" required>
           </div>
         </div>
 
@@ -35,23 +35,37 @@
             <span class="lead fs-1 text-danger">Keamanan</span>
             <div class="input-group mb-2 mt-2">
               <span class="input-group-text bg-dark text-light" style="width: 30%;">Password Baru</span>
-              <input class="form-control bg-dark text-light" style="width: 70%;" type="password" name="newPassword">
+              <input class="form-control bg-dark text-light" style="width: 70%;" placeholder="Masukkan Password Baru" type="password" name="newPassword">
             </div>
             <div class="input-group mb-2">
               <span class="input-group-text bg-dark text-light" style="width: 30%;">Konfirmasi Password</span>
-              <input class="form-control bg-dark text-light" style="width: 70%;" type="password" name="confirmPassword">
+              <input class="form-control bg-dark text-light" style="width: 70%;" placeholder="Konfirmasi Password Baru" type="password" name="confirmPassword">
             </div>
           </div>
           
           <div class="input-group">
             <span class="input-group-text bg-dark text-light">Password Lama</span>
-            <input class="form-control form-control bg-dark text-light" type="password" name="oldPassword" required>
+            <input class="form-control form-control bg-dark text-light" placeholder="Masukkan Password Lama" type="password" name="oldPassword" required>
             <button type="submit" class="btn btn-outline-light">Submit</button>
           </div>
         </div>
 
       </form>
     </div>
+
+    <?php if (isset($_SESSION["flash"])) { ?>
+      <?php if ($_SESSION["flash"]["tipe"] == "warning") { ?>
+        <div class="toast align-items-center text-bg-danger border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } else { ?>
+        <div class="toast align-items-center text-bg-success border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } ?>
+      
+        <div class="d-flex">
+          <span class="toast-body"><?php Flasher::flash(); ?></span>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    <?php } ?>
 
   </div>
 </div>
@@ -77,3 +91,21 @@
     document.getElementById('file-name').innerText = fileName;
   }
 </script>
+
+<style>
+  .form-control {
+    border-color: grey;
+  }
+
+  .input-group-text {
+    border-color: grey;
+  }
+
+  .form-control::placeholder {
+    color: grey;
+  }
+
+  .btn {
+    border-color: grey;
+  }
+</style>

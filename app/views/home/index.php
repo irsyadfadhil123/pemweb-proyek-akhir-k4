@@ -80,7 +80,12 @@
 
 
     <?php if (isset($_SESSION["flash"])) { ?>
-      <div class="toast align-items-center text-bg-success border-0 show bottom-0 end-0 m-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php if ($_SESSION["flash"]["tipe"] == "warning") { ?>
+        <div class="toast align-items-center text-bg-danger border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } else { ?>
+        <div class="toast align-items-center text-bg-success border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } ?>
+      
         <div class="d-flex">
           <span class="toast-body"><?php Flasher::flash(); ?></span>
           <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>

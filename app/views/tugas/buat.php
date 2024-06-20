@@ -1,69 +1,61 @@
-<div class="header">
-    <a href="<?= BASEURL?>/tugas/index" class="btn btn-outline-warning">Kembali</a>
-    <label class="lead fw-medium">Nama User</label>
-</div>
+<div class="bg-dark">
+  <div id="content" style="opacity: 0;">
 
-<!-- flasher -->
-<div class="row">
-    <div class="col-lg-6">
-        <?php Flasher::flash();?>
+    <div class="d-flex shadow" style="position: relative;">
+      <a id="kelas" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">Kelas</a>
+      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Halaman Utama</a>
     </div>
-</div>
-<!-- flasher -->
 
-<div class="content">
-    <form action="<?= BASEURL; ?>/tugas/buat" method="post" class="form-container">
-        <h3 class="display-5 mb-3">Buat Tugas</h3>
-        <input type="hidden" name="id" value="$_SESSION['id']">
-        <input type="text" name="judul" placeholder="Judul" class="form-control mb-3">
-        <textarea name="deskripsi" placeholder="Deskripsi" rows="8" class="form-control mb-3"></textarea>
-        <input type="text" name="kode_tugas" placeholder="Kode Tugas" class="form-control mb-3">
-        <h3 class="lead mb-3">Deadline</h3>
-        <input type="datetime-local" name="deadline" placeholder="Deadline" class="form-control mb-3">
-        <button type="submit" class="btn btn-success">Buat Tugas</button>
-    </form>
+    <div class="d-flex flex-column text-white align-items-center justify-content-center" style="height: 100vh;">
+      <form class="d-flex flex-column border border-info p-4 rounded-4" style="width: 50vw;" action="<?= BASEURL; ?>/tugas/buat" method="post">
+        <span class="fs-3 lead mb-2">Buat Tugas</span>
+
+        <input class="form-control bg-dark text-light border border-secondary mb-2" type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
+        <input class="form-control bg-dark text-light border border-secondary mb-2" type="text" name="judul" placeholder="Judul">
+        <textarea class="form-control bg-dark text-light border border-secondary mb-2" name="deskripsi" placeholder="Deskripsi" rows="8"></textarea>
+        <input class="form-control bg-dark text-light border border-secondary mb-2" type="text" name="kode_tugas" placeholder="Kode Tugas">
+        <span class="lead mb-2">Deadline</span>
+        <input class="form-control bg-dark text-light border border-secondary mb-2" type="datetime-local" name="deadline" placeholder="Deadline">
+
+        <button class="btn btn-outline-info align-self-end" type="submit">Buat Tugas</button>
+      </form>
+    </div>
+
+    <?php if (isset($_SESSION["flash"])) { ?>
+      <?php if ($_SESSION["flash"]["tipe"] == "warning") { ?>
+        <div class="toast align-items-center text-bg-danger border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } else { ?>
+        <div class="toast align-items-center text-bg-success border-0 show bottom-0 end-0 m-3 z-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+      <?php } ?>
+      
+        <div class="d-flex">
+          <span class="toast-body"><?php Flasher::flash(); ?></span>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    <?php } ?>
+
+  </div>
 </div>
+
+<script>
+  $("#content").fadeTo(500, 1);
+
+  $("#home").on("click", function() {
+    $("#content").fadeTo(500, 0, function() {
+      $(location).prop("href", "<?= BASEURL; ?>/home/index");
+    });
+  });
+
+  $("#kelas").on("click", function() {
+    $("#content").fadeTo(500, 0, function() {
+      $(location).prop("href", "<?= BASEURL; ?>/tugas/index");
+    });
+  });
+</script>
 
 <style>
-    body {
-        background-color: #f8f9fa;
-        color: #212529;
-    }
-    .header {
-        background-color: #343a40;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .header a, .header label {
-        color: white;
-    }
-    .content {
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-    .form-container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        width: 100%;
-    }
-    .btn-outline-warning {
-        border-color: #ffc107;
-        color: #ffc107;
-    }
-    .btn-outline-warning:hover {
-        background-color: #ffc107;
-        color: black;
-    }
+  .form-control::placeholder {
+    color: grey;
+  }
 </style>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
