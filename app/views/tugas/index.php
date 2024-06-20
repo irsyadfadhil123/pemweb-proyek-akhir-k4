@@ -2,19 +2,104 @@
   <div id="content" style="opacity: 0;">
 
     <div class="d-flex shadow" style="position: relative;">
-      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">Halaman Utama</a>
+      <a id="home" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">&larr; Halaman Utama</a>
       <a id="profil" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Profil</a>
     </div>
 
     <div class="d-flex flex-column text-white p-5" style="min-height: 100vh;">
-        <span class="fs-1">Kelas</span>
-        <div class="mt-5">
-            <a class="btn btn-outline-success">Tambah Tugas</a>
-            <a class="btn btn-outline-info">Buat Tugas</a>
+      <span class="fs-1">Kelas</span>
+
+      <div class="d-flex mt-5">
+          <a class="btn btn-outline-success me-2" href="<?= BASEURL;?>/tugas/tambahTugas">Tambah Tugas</a>
+          <a class="btn btn-outline-info" href="<?= BASEURL;?>/tugas/buatTugas">Buat Tugas</a>
+      </div>
+
+      <div class="d-flex flex-column border border-secondary p-4 rounded-2 mt-5">
+        <span class="fs-4 mb-4">Tugas yang Ditambahkan</span>
+
+        <?php if (!empty($data['hasilTugasNonAdmin'])): ?>
+        <div class="d-flex">
+          <?php foreach ($data['hasilTugasNonAdmin'] as $tugas_tergabung): ?>
+          <div class="me-2">
+            <div class="d-flex flex-column border border-secondary overflow-scroll p-3 rounded-top-2 mb-1" style="height: 200px; width: 300px;">
+              <span class="fw-semibold"><?= $tugas_tergabung['judul']; ?></span>
+              <hr>
+              <span><?= $tugas_tergabung['deskripsi']; ?></span>
+            </div>
+            <div class="d-flex align-items-center border border-warning p-3 rounded-bottom-2">
+              <span class="me-2"><?= $tugas_tergabung['deadline']; ?></span>
+              <a class="btn btn-outline-warning ms-auto" href="<?= BASEURL;?>/tugas/upload/<?= $tugas_tergabung['tugas_id'];?>">Unggah</a>
+            </div>
+          </div>
+          <?php endforeach; ?>
+          
         </div>
+        <?php else: ?>
+        <hr>
+        <span>Data tidak tersedia</span>
+        <?php endif; ?>
+      </div>
+      
+      <div class="d-flex input-group mt-5">
+      <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasNonAdmin']; $i++): ?>
+        <?php if ($i == $data['pagination']['halamanAktifTugasNonAdmin']): ?>
+          <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>" class="input-group-text border border-warning bg-transparent text-light" style="text-decoration: none;"><?= $i; ?></a>
+        <?php else: ?>
+          <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>" class="input-group-text border border-secondary bg-transparent text-light" style="text-decoration: none;"><?= $i; ?></a>
+        <?php endif; ?>
+      <?php endfor; ?>
+      </div>
+
+      <div class="d-flex flex-column border border-secondary p-4 rounded-2 mt-5">
+        <span class="fs-4 mb-4">Tugas yang Dibuat</span>
+
+        <?php if (!empty($data['hasilTugasAdmin'])): ?>
+        <div class="d-flex">
+          <?php foreach ($data['hasilTugasAdmin'] as $tugas_dibuat): ?>
+          <div class="me-2">
+            <div class="d-flex flex-column border border-secondary overflow-scroll p-3 rounded-top-2 mb-1" style="height: 200px; width: 300px;">
+              <span class="fw-semibold"><?= $tugas_dibuat['judul']; ?></span>
+              <hr>
+              <span><?= $tugas_dibuat['deskripsi']; ?></span>
+            </div>
+            <div class="d-flex align-items-center border border-warning p-3 rounded-bottom-2">
+              <span class="me-2"><?= $tugas_dibuat['deadline']; ?></span>
+              <a class="btn btn-outline-warning ms-auto" href="<?= BASEURL;?>/tugas/upload/<?= $tugas_dibuat['tugas_id'];?>">Lihat</a>
+            </div>
+          </div>
+          <?php endforeach; ?>
+          
+        </div>
+        <?php else: ?>
+        <hr>
+        <span>Data tidak tersedia</span>
+        <?php endif; ?>
+      </div>
+      
+      <div class="d-flex input-group mt-5">
+        <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasAdmin']; $i++): ?>
+            <?php if ($i == $data['pagination']['halamanAktifTugasAdmin']): ?>
+                <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>" class="input-group-text border border-warning bg-transparent text-light" style="text-decoration: none;"><?= $i; ?></a>
+            <?php else: ?>
+                <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>" class="input-group-text border border-secondary bg-transparent text-light" style="text-decoration: none;"><?= $i; ?></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+      </div>
+
     </div>
+
+    <?php if (isset($_SESSION["flash"])) { ?>
+      <div class="toast align-items-center text-bg-success border-0 show bottom-0 end-0 m-3" style="position: fixed;" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <span class="toast-body"><?php Flasher::flash(); ?></span>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    <?php } ?>
   </div>
 </div>
+
+
 
 <script>
   $("#content").fadeTo(500, 1);
@@ -34,134 +119,6 @@
 
 
 
-
-
-
-
-
-
-
-
-<!-- ---------------------------------------------------------------------------------------------------- -->
-
-<div id="app">
-    <div style="position: relative;">
-        <nav class="navbar navbar-dark bg-dark navbar-custom">
-            <div class="container-fluid">
-                <a href="<?= BASEURL;?>/home/index" class="btn btn-warning rounded-0 me-auto">
-                    &larr; Halaman Utama
-                </a>
-                <a href="<?= BASEURL; ?>/home/profil" class="btn btn-warning rounded-0 mx-2">
-                    Profil
-                </a>
-            </div>
-        </nav>
-
-        <div class="bg-dark text-light p-4" style="min-height: 100vh; position: relative;">
-            <transition name="slide-fade">
-                <h1 v-if="show" class="mt-5 mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Kelas</h1>
-            </transition>
-
-            <transition name="slide-fade">
-                <div v-if="show" class="mb-4">
-                    <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3 custom-btn">Tambah Tugas</a>
-                    <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info custom-btn">Buat Tugas</a>
-                </div>
-            </transition>
-            
-            <div class="bg-black bg-opacity-10 p-4 rounded mb-5">
-                <transition name="slide-fade">
-                    <div v-if="show">
-                        <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Tugas yang Ditambahkan</h2>
-                        <?php if (!empty($data['hasilTugasNonAdmin'])): ?>
-                            <div class='d-flex mb-3 overflow-scroll'>
-                                <?php foreach ($data['hasilTugasNonAdmin'] as $tugas_tergabung): ?>
-                                    <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 300px; height: 250px;">
-                                        <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light overflow-scroll">
-                                            <label class="lead fw-semibold"><?= $tugas_tergabung['judul']; ?></label>
-                                            <hr>
-                                            <p class="lead fs-6"><?= $tugas_tergabung['deskripsi']; ?></p>
-                                        </div>
-                                        <div class="d-flex bg-warning p-3 pt-2 pb-2 justify-content-between">
-                                            <label class="align-self-center text-dark"><?= $tugas_tergabung['deadline']; ?></label>
-                                            <a href="<?= BASEURL;?>/tugas/upload/<?= $tugas_tergabung['tugas_id'];?>" class="btn btn-secondary">Unggah</a>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php else: ?>
-                            <hr>
-                            <label>Data tidak Tersedia</label>
-                        <?php endif; ?>                                    
-
-                    </div>
-                </transition>
-            </div>
-
-            <!-- pagination nonAdmin -->
-            <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasNonAdmin']; $i++): ?>
-                <?php if ($i == $data['pagination']['halamanAktifTugasNonAdmin']): ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>" style="font-weight: bold;"><?= $i; ?></a>
-                <?php else: ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>"><?= $i; ?></a>
-                <?php endif; ?>
-            <?php endfor; ?>
-            <!-- pagination nonAdmin -->
-
-            <div class="bg-black bg-opacity-10 p-4 rounded">
-                <transition name="slide-fade">
-                    <div v-if="show">
-                        <h2 class="mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Tugas yang Dibuat</h2>
-                        <?php if (!empty($data['hasilTugasAdmin'])): ?>
-                            <div class='d-flex mb-3 overflow-scroll'>
-                                <?php foreach ($data['hasilTugasAdmin'] as $tugas_dibuat): ?>
-                                    <div class="d-flex flex-column flex-shrink-0 me-4" style="width: 300px; height: 250px;">
-                                        <div class="d-flex flex-column bg-secondary p-3 flex-fill text-light overflow-scroll">
-                                            <label class="lead fw-semibold"><?= $tugas_dibuat['judul']; ?></label>
-                                            <hr>
-                                            <p class="lead fs-6"><?= $tugas_dibuat['deskripsi']; ?></p>
-                                        </div>
-                                        <div class="d-flex bg-warning p-3 pt-2 pb-2 justify-content-between">
-                                            <label class="align-self-center text-dark"><?= $tugas_dibuat['deadline']; ?></label>
-                                            <a href="<?= BASEURL;?>/tugas/lihat/<?= $tugas_dibuat['tugas_id'];?>" class="btn btn-secondary">Lihat</a>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php else: ?>
-                            <hr>
-                            <label>Data tidak Tersedia</label>
-                        <?php endif; ?>
-                    </div>
-                </transition>
-            </div>
-
-            <!-- pagination admin -->
-            <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasAdmin']; $i++): ?>
-                <?php if ($i == $data['pagination']['halamanAktifTugasAdmin']): ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>" style="font-weight: bold;"><?= $i; ?></a>
-                <?php else: ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>"><?= $i; ?></a>
-                <?php endif; ?>
-            <?php endfor; ?>
-            <!-- pagination admin -->
-
-            <?php if (isset($_SESSION["flash"])): ?>
-                <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div class="toast align-items-center text-bg-success border-0 show align-self-end" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="d-flex">
-                            <div class="toast-body">
-                                <?php Flasher::flash(); ?>
-
-                            </div>
-                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
-</div>
 
 <style>
     .slide-fade-enter-active {

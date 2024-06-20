@@ -2,7 +2,7 @@
   <div id="content" style="opacity: 0;">
 
     <div class="d-flex shadow" style="position: relative;">
-      <a id="logout" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">Keluar</a>
+      <a id="logout" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0 me-auto">&larr; Keluar</a>
       <a id="kelas" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Kelas</a>
       <a id="profil" class="btn btn-warning pt-3 pb-3 ps-4 pe-4 rounded-0">Profil</a>
     </div>
