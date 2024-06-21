@@ -77,6 +77,7 @@ class Tugas extends Controller {
             $file = $this->model('File_model')->findByClassAndUserId($id);
             $diskusi = $this->model('Diskusi_model')->findByTugasId($id);
             is_null($file) ? $data['type'] = "Upload Tugas" : $data['type'] = "Edit Tugas";
+            $data['file'] = $file;
             $data['diskusi'] = $diskusi;
             $data['tugas'] = $result;
             $data['judul'] = "Upload Tugas";

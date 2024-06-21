@@ -18,7 +18,7 @@ class Home extends Controller {
     }
 
     public function pagination($data) {
-        $jumlahDataPerHalaman = 1;
+        $jumlahDataPerHalaman = 3;
 
         $jumlahTugas = $data;
         $jumlahHalamanTugas = ceil($jumlahTugas / $jumlahDataPerHalaman);

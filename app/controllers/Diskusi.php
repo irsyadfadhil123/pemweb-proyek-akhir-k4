@@ -25,7 +25,7 @@ class Diskusi extends Controller {
                 if ($data['type'] == "user") {
                     Flasher::setFlash('Sukses menambahkan Balasan', 'Pemberitahuan', 'success');
                     header("Location: " . BASEURL . '/tugas/upload/' . $id);
-                    exit;    
+                    exit;
                 } else {
                     Flasher::setFlash('Sukses menambahkan Balasan', 'Pemberitahuan', 'success');
                     header("Location: " . BASEURL . '/tugas/lihat/' . $id);

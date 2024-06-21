@@ -1,7 +1,4 @@
-<div class="header">
-    <a href="<?= BASEURL?>/tugas/index" class="btn btn-outline-warning">Kembali</a>
-    <label class="lead fw-medium">Nama User</label>
-</div>
+    <a href="<?= BASEURL?>/tugas/index" class="back btn btn-outline-warning">Kembali</a>
 
 <!-- flasher -->
 <div class="row">
@@ -21,7 +18,7 @@
 
 <style>
     body {
-        background-color: #2c2c2c;
+        background-color: #212529;
         color: white;
     }
     .header {
@@ -64,6 +61,9 @@
     }
     .btn-success {
         align-self: flex-end;
+    }
+    .back {
+        margin: 20px;
     }
 </style>
 

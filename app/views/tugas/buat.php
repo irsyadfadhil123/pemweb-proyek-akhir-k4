@@ -1,7 +1,4 @@
-<div class="header">
-    <a href="<?= BASEURL?>/tugas/index" class="btn btn-outline-warning">Kembali</a>
-    <label class="lead fw-medium">Nama User</label>
-</div>
+    <a href="<?= BASEURL?>/tugas/index" class="back btn btn-outline-warning">Kembali</a>
 
 <!-- flasher -->
 <div class="row">
@@ -14,7 +11,7 @@
 <div class="content">
     <form action="<?= BASEURL; ?>/tugas/buat" method="post" class="form-container">
         <h3 class="display-5 mb-3">Buat Tugas</h3>
-        <input type="hidden" name="id" value="$_SESSION['id']">
+        <input type="hidden" name="id" value="<?= $_COOKIE['id'] ?>">
         <input type="text" name="judul" placeholder="Judul" class="form-control mb-3">
         <textarea name="deskripsi" placeholder="Deskripsi" rows="8" class="form-control mb-3"></textarea>
         <input type="text" name="kode_tugas" placeholder="Kode Tugas" class="form-control mb-3">
@@ -26,7 +23,7 @@
 
 <style>
     body {
-        background-color: #f8f9fa;
+        background-color: #212529;
         color: #212529;
     }
     .header {
@@ -47,7 +44,7 @@
         min-height: 100vh;
     }
     .form-container {
-        background-color: white;
+        background-color: #383c44;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -56,11 +53,17 @@
     }
     .btn-outline-warning {
         border-color: #ffc107;
-        color: #ffc107;
+        color: white;
     }
     .btn-outline-warning:hover {
         background-color: #ffc107;
         color: black;
+    }
+    .back {
+        margin: 20px;
+    }
+    h3 {
+        color: white;
     }
 </style>
 

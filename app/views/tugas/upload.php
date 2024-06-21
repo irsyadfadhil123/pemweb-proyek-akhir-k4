@@ -1,21 +1,48 @@
-<div class="container">
-        <div class="header">
-            <a href="<?= BASEURL?>/tugas/index" class="btn btn-outline-warning">Kembali</a>
-            <h3 class="display-6 fs-4 fw-semibold align-self-center">Upload Tugas</h3>
-            <div class="align-self-center">
-                <label class="lead fw-medium">Nama User</label>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?= $data['type'] ?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="<?= BASEURL;?>/file/tambah/<?= $data['tugas']['tugas_id'] ?>" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload File:</label>
+                        <input class="form-control" type="file" name="file" id="formFile">
+                    </div>
+                    <?php if($data['type'] === "Edit Tugas") { ?>
+                    <a href="<?= BASEURL ?>/files/<?= $data['file']['nama_file'] ?>" target="_blank"><button type="button" class="btn btn-primary">Lihat File</button></a>
+                    <?php } ?>
+                    <div class="col-auto">
+                        <label for="catatan" class="col-form-label">Catatan:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="catatan" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Upload File</button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
 
+<div class="">
         <div class="task-details">
+            <div class="row">
+                <?php Flasher::flash();?>
+            </div>
             <div class="detail">
+                <a href="<?= BASEURL?>/tugas/index" class="btn btn-outline-warning">Kembali</a>
                 <div>
-                    <label class="lead"><?= $data['tugas']['tugas_id'] ?></label>
                     <h2><?= $data['tugas']['judul'] ?></h2>
                 </div>
                 <div>
                     <label class="lead">Kode Kelas</label>
-                    <h3 class="display-6 text-secondary">D-081</h3>
+                    <h3 class="display-7 text-secondary"><?= $data['tugas']['kode_tugas'] ?></h3>
                 </div>
             </div>
             <div class="detail">
@@ -27,67 +54,71 @@
                     <div class="border-bottom border-secondary lead"><?= $data['tugas']['deadline'] ?></div>
                 </div>
                 <div class="btn-group">
-                    <a href="<?= BASEURL?>/kehadiran/kehadiran/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info">Catat Kehadiran</a>
-                    <a href="<?= BASEURL?>/tugas/uploadFile/<?= $data['tugas']['tugas_id'];?>" class="btn btn-info"><?= $data['type'] ?></a>
+                    <a href="<?= BASEURL?>/kehadiran/kehadiran/<?= $data['tugas']['tugas_id'];?>" class="btn btn-primary">Catat Kehadiran</a>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <?= $data['type'] ?>                        
+                    </button>
                 </div>
             </div>
         </div>
 
         <div class="discussion">
-            <h2>Forum Diskusi</h2>
+            <p class="diskusi fs-2 text">Forum Diskusi</p>
+            <div class="new-discussion">
+                <form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post">
+                    <input type="hidden" name="type" value="user">
+                    <label class="fs-4 text" for="pesan">Buat Diskusi</label>
+                    <input type="textarea" name="pesan" placeholder="Tulis pesan disini" required>
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </form>
+            </div>
             <?php if (!empty($data['diskusi'])): ?>
-                <?php foreach ($data['diskusi'] as $diskusi): ?>
-                    <div class="message">
-                        <img src="<?= BASEURL . "/img/" . $diskusi['gambar'] ?>" alt="User Image">
-                        <div>
-                            <p>Nama: <?= ($diskusi['user_id'] == $data['tugas']['admin']) ? $diskusi['nama'] . " (Pemberi Tugas)" : $diskusi['nama']?></p>
-                            <p>Username: <?= $diskusi['username']?></p>
-                            <p>Pesan: <?= $diskusi['pesan']?></p>
-                            <p>Waktu: <?= $diskusi['waktu']?></p>
+    <?php foreach ($data['diskusi'] as $diskusi): ?>
+        <div class="message">
+            <img src="<?= BASEURL . "/img/" . $diskusi['gambar'] ?>" alt="User Image">
+            <div>
+                <p class="fs-4 text"><?= ($diskusi['user_id'] == $data['tugas']['admin']) ? $diskusi['nama'] . " (Pemberi Tugas)" : $diskusi['nama']?></p>
+                <p class="fs-6 text"><?= $diskusi['username']?> | <?= $diskusi['waktu']?></p>
+                <p class="pesan fs-5 text"><?= $diskusi['pesan']?></p>
+            </div>
+        </div>
+        <form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post" class="reply-form">
+            <input type="hidden" name="type" value="user">
+            <input type="hidden" name="reff" value="<?= $diskusi['diskusi_id'] ?>">
+            <label for="pesan">Kirim Balasan</label><br>
+            <input type="textarea" name="pesan" placeholder="Tulis pesan disini" required>
+            <button type="submit" class="btn btn-primary">Balas</button>
+        </form>
+
+        <?php if (isset($diskusi['balasan'])): ?>
+            <a class="btn-balasan btn btn-dark btn-sm" data-bs-toggle="collapse" href="#multiCollapseExample<?= $diskusi['diskusi_id'] ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample<?= $diskusi['diskusi_id'] ?>">Tampilkan Balasan</a>
+            <div class="collapse multi-collapse" id="multiCollapseExample<?= $diskusi['diskusi_id'] ?>">
+                <?php foreach ($diskusi['balasan'] as $reff): ?>
+                    <div class="card card-body">
+                        <div class="message reply">
+                            <img src="<?= BASEURL . "/img/" . $reff['gambar'] ?>" alt="User Image">
+                            <div>
+                                <p class="fs-4 text"><?= ($reff['user_id'] == $data['tugas']['admin']) ? $reff['nama'] . " (Pemberi Tugas)" : $reff['nama']?></p>
+                                <p class="fs-6 text"><?= $reff['username']?> | <?= $reff['waktu']?></p>
+                                <p class="pesan fs-5 text"><?= $reff['pesan']?></p>
+                            </div>
                         </div>
                     </div>
-                    <form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post" class="reply-form">
-                        <input type="hidden" name="type" value="user">
-                        <input type="hidden" name="reff" value="<?= $diskusi['diskusi_id'] ?>">
-                        <label for="pesan">Kirim Balasan</label>
-                        <input type="textarea" name="pesan" placeholder="Tulis pesan disini" required>
-                        <button type="submit" class="btn btn-info">Balas</button>
-                    </form>
-                    <?php if (isset($diskusi['balasan'])): ?>
-                        <?php foreach ($diskusi['balasan'] as $reff): ?>
-                            <div class="message reply">
-                                <img src="<?= BASEURL . "/img/" . $reff['gambar'] ?>" alt="User Image">
-                                <div>
-                                    <p>Nama: <?= ($reff['user_id'] == $data['tugas']['admin']) ? $reff['nama'] . " (Pemberi Tugas)" : $reff['nama']?></p>
-                                    <p>Username: <?= $reff['username']?></p>
-                                    <p>Pesan: <?= $reff['pesan']?></p>
-                                    <p>Waktu: <?= $reff['waktu']?></p>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <p>Tidak ada Diskusi</p>
-            <?php endif; ?>
-            <a href="" class="btn btn-info align-self-end">Buat Diskusi</a>
-        </div>
-
-        <div class="new-discussion">
-            <form action="<?= BASEURL; ?>/diskusi/user/<?= $data['tugas']['tugas_id'] ?>" method="post">
-                <input type="hidden" name="type" value="user">
-                <label for="pesan">Kirim Pesan</label>
-                <input type="textarea" name="pesan" placeholder="Tulis pesan disini" required>
-                <button type="submit" class="btn btn-primary">Kirim</button>
-            </form>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>Tidak ada Diskusi</p>
+<?php endif; ?>
         </div>
     </div>
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            padding: 20px;
+            background-color: #212529;
+            color: white;
         }
         .container {
             max-width: 900px;
@@ -111,14 +142,14 @@
             margin-right: 10px;
         }
         .header h3 {
-            color: black; /* Change header text color to black */
+            color: white; /* Change header text color to white */
         }
         .header .lead {
-            color: black;
+            color: white;
         }
         .task-details {
-            background-color: #f1f3f5;
-            padding: 20px;
+            background-color: #1a1d20;
+            padding: 0px 20px 20px 20px;
             border-radius: 5px;
         }
         .task-details h2, .discussion h2 {
@@ -148,7 +179,7 @@
             gap: 10px; /* Add gap between buttons */
         }
         .new-discussion {
-            background-color: #f1f3f5;
+            background-color: #1a1d20;
             padding: 20px;
             border-radius: 5px;
         }
@@ -166,12 +197,11 @@
             border-radius: 5px;
         }
         .discussion .reply-form {
-            margin-left: 30px;
             margin-top: 10px;
         }
         .discussion .reply-form input[type="textarea"] {
             margin-bottom: 10px;
-            padding: 10px;
+            padding: 5px;
             border: 1px solid #ced4da;
             border-radius: 5px;
         }
@@ -184,5 +214,44 @@
         .message {
             display: flex;
             align-items: center;
+            margin: 0;
+        }
+        .modal-content {
+            background-color: #212529;
+        }
+        .btn-close {
+            background-color: white;
+        }
+        .discussion {
+            margin: 20px;
+        }
+        p {
+            margin: 0px;
+        }
+        .pesan {
+            margin: 10px 0px 10px 0px;
+        }
+        .diskusi {
+            margin: 0px 0px 20px 0px;
+        }
+        .reply {
+            margin-left: 65px;
+        }
+        .reply-form {
+            padding: 0px;
+        }
+        .card {
+            background-color: #212529;
+            border: none;
+            padding: 20px 0px 20px 0px;
+        }
+        .btn-balasan {
+            border: none;
+            padding: 0px;
+            color: #1860d4;
+        }
+        .btn-balasan:hover {
+            background-color: #212529;
+            border: none;
         }
     </style>

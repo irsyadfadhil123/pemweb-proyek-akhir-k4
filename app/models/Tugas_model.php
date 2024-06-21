@@ -105,7 +105,7 @@ class Tugas_model {
         INNER JOIN tugas t ON l.tugas_id = t.tugas_id
         WHERE l.user_id = ? 
         AND t.admin != ? 
-        AND TIMESTAMPDIFF(DAY, NOW(), t.deadline) > 0 
+        AND TIMESTAMPDIFF(MINUTE, NOW(), t.deadline) > 0 
         AND TIMESTAMPDIFF(DAY, NOW(), t.deadline) <= 7
         LIMIT ?, ?;
         ";

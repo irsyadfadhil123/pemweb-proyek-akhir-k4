@@ -13,7 +13,7 @@ class User_model {
             $query = "INSERT INTO {$this->table} (nama, username, password, gambar) VALUES (?, ?, ?, ?)";
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             $this->db->query($query);
-            $this->db->bind($data['nama'], $data['username'], $data['password'], "nophoto");
+            $this->db->bind($data['nama'], $data['username'], $data['password'], "nophoto.png");
             $this->db->execute();
         
             return $this->db->rowCount();

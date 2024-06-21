@@ -1,8 +1,4 @@
-<div class="header">
-    <a href="<?= BASEURL;?>/home/profil" class="btn btn-outline-warning">Kembali</a>
-    <h3 class="display-6 fs-4 fw-semibold">Edit Profile</h3>
-    <label class="lead fw-medium">Nama User</label>
-</div>
+    <a href="<?= BASEURL;?>/home/profil" class="back btn btn-outline-warning">Kembali</a>
 
 <div class="content">
     <form action="<?= BASEURL;?>/home/editProfil" method="post" enctype="multipart/form-data" class="form-container">
@@ -42,7 +38,7 @@
 
 <style>
     body {
-        background-color: #2c2c2c;
+        background-color: #212529;
         color: white;
         }
     .header {
@@ -85,6 +81,9 @@
     .btn-outline-warning:hover, .btn-outline-secondary:hover {
         background-color: #ffc107;
         color: black;
+    }
+    .back {
+        margin: 10px;
     }
 </style>
 

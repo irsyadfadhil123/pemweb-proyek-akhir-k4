@@ -1,23 +1,20 @@
     <div id="app">
         <div class="position-relative">
-            <nav class="navbar navbar-dark bg-dark navbar-custom">
-                <div class="container-fluid">
-                    <a href="<?= BASEURL; ?>/home/logout" class="btn btn-warning rounded-0 me-auto">
-                        &larr; Keluar
+            <div class="container">
+                <div class="d-flex justify-content-between w-100">
+                    <a href="<?= BASEURL; ?>/home/logout" class="btn btn-outline-warning">
+                        Keluar
                     </a>
-                    <a href="<?= BASEURL; ?>/tugas/index" class="btn btn-warning rounded-0 mx-2">
-                        Kelas
-                    </a>
-                    <a href="<?= BASEURL; ?>/home/profil" class="btn btn-warning rounded-0">
+                    <a href="<?= BASEURL; ?>/home/profil" class="btn btn-outline-warning">
                         Profil
                     </a>
                 </div>
-            </nav>
+            </div>
 
             <div class="bg-dark text-light p-4 content">
                 <div class="container">
                     <transition name="slide-fade">
-                        <h1 v-if="show" class="welcome-text mt-5 mb-5 text-center">Selamat Datang, [ INSERT NAME HERE ]</h1>
+                        <h1 v-if="show" class="welcome-text mt-5 mb-5 text-center">Selamat Datang</h1>
                     </transition>
 
                     <div class="reminder-box">
@@ -60,7 +57,13 @@
                             </div>
                         </transition>
                     </div>
-
+                        <div class="container mt-5">
+                            <div class="d-flex justify-content-center">
+                                <a href="<?= BASEURL; ?>/tugas/index" class="btn btn-outline-warning">
+                                    Daftar Kelas
+                                </a>
+                            </div>
+                        </div>
                     <?php if (isset($_SESSION["flash"])) { ?>
                         <div class="toast-container position-fixed bottom-0 end-0 p-3">
                             <div class="toast align-items-center text-bg-success border-0 show align-self-end" role="alert" aria-live="assertive" aria-atomic="true">
@@ -92,7 +95,7 @@
 
     <style>
         body {
-            background-color: #343a40;
+            background-color: #212529;
             color: #fff;
         }
 
@@ -120,6 +123,9 @@
         .reminder-content {
             font-size: 1.2rem;
             color: #fff;
+        }
+        .btn {
+            margin-top: 20px;
         }
     </style>
 

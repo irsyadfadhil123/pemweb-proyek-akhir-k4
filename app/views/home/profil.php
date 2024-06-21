@@ -1,7 +1,4 @@
-<div class="header">
-    <a href="<?= BASEURL; ?>/home/index" class="btn btn-outline-warning">Kembali</a>
-    <h3 class="display-6 fs-4 fw-semibold">Edit Profile</h3>
-    <label class="lead fw-medium">Nama User</label>
+    <a href="<?= BASEURL; ?>/home/index" class="back btn btn-outline-warning">Kembali</a>
 </div>
 
 <!-- flasher -->
@@ -23,15 +20,9 @@
         <a href="<?= BASEURL; ?>/home/edit" class="btn btn-success mt-3">Edit Profile</a>
     </div>
 </div>
-
-<div class="reminder">
-    <h2>Reminder</h2>
-    <p>You have no assignment right now</p>
-</div>
-
 <style>
         body {
-            background-color: #2c2c2c;
+            background-color: #212529;
             color: white;
         }
         .header {
@@ -78,6 +69,9 @@
             border-radius: 5px;
             text-align: center;
             margin-top: 20px;
+        }
+        .back {
+        margin: 10px;
         }
     </style>
 

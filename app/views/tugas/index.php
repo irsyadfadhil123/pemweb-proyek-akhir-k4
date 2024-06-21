@@ -1,25 +1,17 @@
 <div id="app">
     <div style="position: relative;">
-        <nav class="navbar navbar-dark bg-dark navbar-custom">
-            <div class="container-fluid">
-                <a href="<?= BASEURL;?>/home/index" class="btn btn-warning rounded-0 me-auto">
-                    &larr; Halaman Utama
+                <a href="<?= BASEURL;?>/home/index" class="back btn btn-outline-warning">
+                    Kembali
                 </a>
-                <a href="<?= BASEURL; ?>/home/profil" class="btn btn-warning rounded-0 mx-2">
-                    Profil
-                </a>
-            </div>
-        </nav>
-
         <div class="bg-dark text-light p-4" style="min-height: 100vh; position: relative;">
             <transition name="slide-fade">
-                <h1 v-if="show" class="mt-5 mb-5" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Kelas</h1>
+                <h1 v-if="show" class="mt-1 mb-2" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Kelas</h1>
             </transition>
 
             <transition name="slide-fade">
                 <div v-if="show" class="mb-4">
-                    <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3 custom-btn">Tambah Tugas</a>
-                    <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info custom-btn">Buat Tugas</a>
+                    <a href="<?= BASEURL;?>/tugas/tambahTugas" class="btn btn-outline-success me-3">Tambah Tugas</a>
+                    <a href="<?= BASEURL;?>/tugas/buatTugas" class="btn btn-outline-info">Buat Tugas</a>
                 </div>
             </transition>
             
@@ -53,13 +45,21 @@
             </div>
 
             <!-- pagination nonAdmin -->
-            <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasNonAdmin']; $i++): ?>
-                <?php if ($i == $data['pagination']['halamanAktifTugasNonAdmin']): ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>" style="font-weight: bold;"><?= $i; ?></a>
-                <?php else: ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>"><?= $i; ?></a>
-                <?php endif; ?>
-            <?php endfor; ?>
+            <nav aria-label="Page navigation">
+    <ul class="pagination">
+        <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasNonAdmin']; $i++): ?>
+            <?php if ($i == $data['pagination']['halamanAktifTugasNonAdmin']): ?>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>"><?= $i; ?></a>
+                </li>
+            <?php else: ?>
+                <li class="page-item">
+                    <a class="page-link" href="<?= BASEURL ?>/tugas/index/<?= $i ?>/<?= $data['pagination']['halamanAktifTugasAdmin'] ?>"><?= $i; ?></a>
+                </li>
+            <?php endif; ?>
+        <?php endfor; ?>
+    </ul>
+</nav>
             <!-- pagination nonAdmin -->
 
             <div class="bg-black bg-opacity-10 p-4 rounded">
@@ -91,13 +91,21 @@
             </div>
 
             <!-- pagination admin -->
-            <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasAdmin']; $i++): ?>
-                <?php if ($i == $data['pagination']['halamanAktifTugasAdmin']): ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>" style="font-weight: bold;"><?= $i; ?></a>
-                <?php else: ?>
-                    <a href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>"><?= $i; ?></a>
-                <?php endif; ?>
-            <?php endfor; ?>
+            <nav aria-label="Page navigation">
+    <ul class="pagination">
+        <?php for ($i = 1; $i <= $data['pagination']['jumlahHalamanTugasAdmin']; $i++): ?>
+            <?php if ($i == $data['pagination']['halamanAktifTugasAdmin']): ?>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>"><?= $i; ?></a>
+                </li>
+            <?php else: ?>
+                <li class="page-item">
+                    <a class="page-link" href="<?= BASEURL ?>/tugas/index/<?= $data['pagination']['halamanAktifTugasNonAdmin'] ?>/<?= $i ?>"><?= $i; ?></a>
+                </li>
+            <?php endif; ?>
+        <?php endfor; ?>
+    </ul>
+</nav>
             <!-- pagination admin -->
 
             <?php if (isset($_SESSION["flash"])): ?>
@@ -106,7 +114,6 @@
                         <div class="d-flex">
                             <div class="toast-body">
                                 <?php Flasher::flash(); ?>
-
                             </div>
                             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
@@ -118,6 +125,9 @@
 </div>
 
 <style>
+    body {
+        background-color: #212529;
+    }
     .slide-fade-enter-active {
         transition: all 0.3s ease-out;
     }
@@ -156,6 +166,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
     font-size: 14px; /* Smaller font size */
     min-width: auto; /* Ensure button width adjusts to content */
+    }
+
+    .back {
+        margin: 20px;
     }
 </style>
 
