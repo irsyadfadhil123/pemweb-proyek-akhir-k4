@@ -35,7 +35,7 @@ class File extends Controller {
         if (empty($type)) {
             if ($this->model('File_model')->add($data, $catatan) > 0) {
                 Flasher::setFlash('Berhasil Upload File', 'Pemberitahuan', 'success');
-                echo "<script>window.history.go(-2);</script>";
+                echo "<script>window.history.go(-1);</script>";
                 exit;
             } 
             Flasher::setFlash('Gagal Upload File', 'Pemberitahuan', 'danger');
